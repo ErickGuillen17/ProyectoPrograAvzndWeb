@@ -7,7 +7,7 @@ namespace BackEnd.Entities
     {
         public Empleo()
         {
-            Solicituds = new HashSet<Solicitud>();
+            Solicitud = new HashSet<Solicitud>();
         }
 
         public long IdEmpleo { get; set; }
@@ -22,7 +22,7 @@ namespace BackEnd.Entities
         public string CorreoReclutador { get; set; } = null!;
 
         public virtual Reclutador CorreoReclutadorNavigation { get; set; } = null!;
-        public virtual Categorium IdCategoriaNavigation { get; set; } = null!;
-        public virtual ICollection<Solicitud> Solicituds { get; set; }
+        public virtual Categoria IdCategoriaNavigation { get; set; } = null!;
+        public virtual ICollection<Solicitud> Solicitud { get; set; }
     }
 }

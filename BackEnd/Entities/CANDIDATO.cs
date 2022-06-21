@@ -7,7 +7,7 @@ namespace BackEnd.Entities
     {
         public Candidato()
         {
-            Solicituds = new HashSet<Solicitud>();
+            Solicitud = new HashSet<Solicitud>();
         }
 
         public string NombreCandidato { get; set; } = null!;
@@ -18,8 +18,8 @@ namespace BackEnd.Entities
         public long AreaInteres { get; set; }
         public string CorreoUsuario { get; set; } = null!;
 
-        public virtual Categorium AreaInteresNavigation { get; set; } = null!;
+        public virtual Categoria AreaInteresNavigation { get; set; } = null!;
         public virtual Usuario CorreoUsuarioNavigation { get; set; } = null!;
-        public virtual ICollection<Solicitud> Solicituds { get; set; }
+        public virtual ICollection<Solicitud> Solicitud { get; set; }
     }
 }

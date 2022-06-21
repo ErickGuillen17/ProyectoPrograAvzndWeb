@@ -7,7 +7,7 @@ namespace BackEnd.Entities
     {
         public Reclutador()
         {
-            Empleos = new HashSet<Empleo>();
+            Empleo = new HashSet<Empleo>();
         }
 
         public string CorreoReclutador { get; set; } = null!;
@@ -17,6 +17,6 @@ namespace BackEnd.Entities
         public int TelefonoReclutador { get; set; }
 
         public virtual Usuario CorreoReclutadorNavigation { get; set; } = null!;
-        public virtual ICollection<Empleo> Empleos { get; set; }
+        public virtual ICollection<Empleo> Empleo { get; set; }
     }
 }

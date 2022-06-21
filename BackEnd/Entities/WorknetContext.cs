@@ -16,21 +16,21 @@ namespace BackEnd.Entities
         {
         }
 
-        public virtual DbSet<Bitacora> Bitacoras { get; set; } = null!;
-        public virtual DbSet<Candidato> Candidatos { get; set; } = null!;
-        public virtual DbSet<Categorium> Categoria { get; set; } = null!;
-        public virtual DbSet<Empleo> Empleos { get; set; } = null!;
-        public virtual DbSet<Reclutador> Reclutadors { get; set; } = null!;
-        public virtual DbSet<Rol> Rols { get; set; } = null!;
-        public virtual DbSet<Solicitud> Solicituds { get; set; } = null!;
-        public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
+        public virtual DbSet<Bitacora> Bitacora { get; set; } = null!;
+        public virtual DbSet<Candidato> Candidato { get; set; } = null!;
+        public virtual DbSet<Categoria> Categoria { get; set; } = null!;
+        public virtual DbSet<Empleo> Empleo { get; set; } = null!;
+        public virtual DbSet<Reclutador> Reclutador { get; set; } = null!;
+        public virtual DbSet<Rol> Rol { get; set; } = null!;
+        public virtual DbSet<Solicitud> Solicitud { get; set; } = null!;
+        public virtual DbSet<Usuario> Usuario { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Worknet;Integrated Security=True;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=.;Database=Worknet;Integrated Security=True;Trusted_Connection=True;");
             }
         }
 
@@ -66,7 +66,7 @@ namespace BackEnd.Entities
                     .HasColumnName("ORIGEN");
 
                 entity.HasOne(d => d.CorreoUsuarioNavigation)
-                    .WithMany(p => p.Bitacoras)
+                    .WithMany(p => p.Bitacora)
                     .HasForeignKey(d => d.CorreoUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_BITACORA_USUARIOS");
@@ -106,7 +106,7 @@ namespace BackEnd.Entities
                 entity.Property(e => e.TelefonoCandidato).HasColumnName("TELEFONO_CANDIDATO");
 
                 entity.HasOne(d => d.AreaInteresNavigation)
-                    .WithMany(p => p.Candidatos)
+                    .WithMany(p => p.Candidato)
                     .HasForeignKey(d => d.AreaInteres)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CANDIDATOS_CATEGORIAS");
@@ -118,7 +118,7 @@ namespace BackEnd.Entities
                     .HasConstraintName("R_8");
             });
 
-            modelBuilder.Entity<Categorium>(entity =>
+            modelBuilder.Entity<Categoria>(entity =>
             {
                 entity.HasKey(e => e.IdCategoria)
                     .HasName("XPKCATEGORIAS")
@@ -184,13 +184,13 @@ namespace BackEnd.Entities
                     .HasColumnName("REQUISITOS");
 
                 entity.HasOne(d => d.CorreoReclutadorNavigation)
-                    .WithMany(p => p.Empleos)
+                    .WithMany(p => p.Empleo)
                     .HasForeignKey(d => d.CorreoReclutador)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_EMPLEOS_RECLUTADORES");
 
                 entity.HasOne(d => d.IdCategoriaNavigation)
-                    .WithMany(p => p.Empleos)
+                    .WithMany(p => p.Empleo)
                     .HasForeignKey(d => d.IdCategoria)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_EMPLEOS_CATEGORIAS");
@@ -269,13 +269,13 @@ namespace BackEnd.Entities
                 entity.Property(e => e.IdEmpleo).HasColumnName("ID_EMPLEO");
 
                 entity.HasOne(d => d.CorreoCandidatoNavigation)
-                    .WithMany(p => p.Solicituds)
+                    .WithMany(p => p.Solicitud)
                     .HasForeignKey(d => d.CorreoCandidato)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SOLICITUDES_CANDIDATOS");
 
                 entity.HasOne(d => d.IdEmpleoNavigation)
-                    .WithMany(p => p.Solicituds)
+                    .WithMany(p => p.Solicitud)
                     .HasForeignKey(d => d.IdEmpleo)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("R_6");
@@ -301,7 +301,7 @@ namespace BackEnd.Entities
                 entity.Property(e => e.IdRol).HasColumnName("ID_ROL");
 
                 entity.HasOne(d => d.IdRolNavigation)
-                    .WithMany(p => p.Usuarios)
+                    .WithMany(p => p.Usuario)
                     .HasForeignKey(d => d.IdRol)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("R_4");

@@ -7,7 +7,7 @@ namespace BackEnd.Entities
     {
         public Usuario()
         {
-            Bitacoras = new HashSet<Bitacora>();
+            Bitacora = new HashSet<Bitacora>();
         }
 
         public string CorreoUsuario { get; set; } = null!;
@@ -17,6 +17,6 @@ namespace BackEnd.Entities
         public virtual Rol IdRolNavigation { get; set; } = null!;
         public virtual Candidato Candidato { get; set; } = null!;
         public virtual Reclutador Reclutador { get; set; } = null!;
-        public virtual ICollection<Bitacora> Bitacoras { get; set; }
+        public virtual ICollection<Bitacora> Bitacora { get; set; }
     }
 }

@@ -7,12 +7,12 @@ namespace BackEnd.Entities
     {
         public Rol()
         {
-            Usuarios = new HashSet<Usuario>();
+            Usuario = new HashSet<Usuario>();
         }
 
         public long IdRol { get; set; }
         public string NombreRol { get; set; } = null!;
 
-        public virtual ICollection<Usuario> Usuarios { get; set; }
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

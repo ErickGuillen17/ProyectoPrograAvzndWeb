@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace BackEnd.Entities
 {
-    public partial class CATEGORIA
+    public partial class Categoria
     {
-        public CATEGORIA()
+        public Categoria()
         {
-            CANDIDATOs = new HashSet<CANDIDATO>();
-            EMPLEOs = new HashSet<EMPLEO>();
+            Candidato = new HashSet<Candidato>();
+            Empleo = new HashSet<Empleo>();
         }
 
-        public long ID_CATEGORIA { get; set; }
-        public string CATEGORIA_DESCRIPCION { get; set; } = null!;
+        public long IdCategoria { get; set; }
+        public string CategoriaDescripcion { get; set; } = null!;
 
-        public virtual ICollection<CANDIDATO> CANDIDATOs { get; set; }
-        public virtual ICollection<EMPLEO> EMPLEOs { get; set; }
+        public virtual ICollection<Candidato> Candidato { get; set; }
+        public virtual ICollection<Empleo> Empleo { get; set; }
     }
 }
