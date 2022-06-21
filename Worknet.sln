@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd", "BackEnd\BackEnd.csproj", "{B1BF14C3-2DFB-4A57-9A5B-29F6778C56AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontEnd", "FrontEnd\FrontEnd.csproj", "{0178D899-CB42-4303-B4E4-B4A30C9453C5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B1BF14C3-2DFB-4A57-9A5B-29F6778C56AB} = {B1BF14C3-2DFB-4A57-9A5B-29F6778C56AB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

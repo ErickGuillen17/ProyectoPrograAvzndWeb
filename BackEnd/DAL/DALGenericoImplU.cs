@@ -4,12 +4,12 @@ using System.Linq.Expressions;
 
 namespace BackEnd.DAL
 {
-    public class DALGenericoImpl<TEntity> : IDALGenerico<TEntity> where TEntity : class
+    public class DALGenericoImplu<TEntity> : IDALGenericoU<TEntity> where TEntity : class
     {
 
         protected readonly WorknetContext Context;
 
-        public DALGenericoImpl(WorknetContext context)
+        public DALGenericoImplu(WorknetContext context)
         {
             Context = context;
         }

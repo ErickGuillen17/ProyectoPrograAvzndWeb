@@ -10,13 +10,13 @@ namespace BackEnd.DAL
         private readonly WorknetContext context;
         //public IDALGenerico<Queja> quejaDAL;
         //public IDALGenerico<TablaGeneral> tablaDAL;
-        public IDALGenerico<T> genericDAL;
+        public IDALGenericoU<T> genericDAL;
 
 
         public UnidadDeTrabajo(WorknetContext _context)
         {
             context = _context;
-            genericDAL = new DALGenericoImpl<T>(context);
+            genericDAL = new DALGenericoImplu<T>(context);
           
         }
 

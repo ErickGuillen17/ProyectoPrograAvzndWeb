@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BackEnd.DAL
 {
-    public interface IDALGenerico<TEntity> where TEntity : class
+    public interface IDALGenericoU<TEntity> where TEntity : class
     {
         TEntity Get(string id);
         IEnumerable<TEntity> GetAll();
