@@ -25,7 +25,7 @@ namespace BackEnd.DAL
             {
                 //sumar o calcular 
 
-                using (UnidadDeTrabajo<Usuario> unidad = new UnidadDeTrabajo<Usuario>(context))
+                using (UnidadDeTrabajoU<Usuario> unidad = new UnidadDeTrabajoU<Usuario>(context))
                 {
                     unidad.genericDAL.Add(entity);
                     return unidad.Complete();
@@ -54,7 +54,7 @@ namespace BackEnd.DAL
             try
             {
                 Usuario usuario;
-                using (UnidadDeTrabajo<Usuario> unidad = new UnidadDeTrabajo<Usuario>(context))
+                using (UnidadDeTrabajoU<Usuario> unidad = new UnidadDeTrabajoU<Usuario>(context))
                 {
                     usuario = unidad.genericDAL.Get(UsuarioId);
                 }
@@ -67,16 +67,37 @@ namespace BackEnd.DAL
             }
         }
 
+        //public Usuario Login(string correo, string password)
+        //{
+        //    try
+        //    {
+        //        Usuario usuario;
+        //        using (UnidadDeTrabajoU<Usuario> unidad = new UnidadDeTrabajoU<Usuario>(context))
+        //        {
+        //            usuario = context.Usuario.FromSqlRaw<Usuario>("SP_Buscar_Usuario {0}", correo, password)
+        //                .ToList()
+        //                .FirstOrDefault();
+                    
+        //        }
+        //        return usuario;
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //}
+
         public List<Usuario> Get()
         {
             try
             {
-                IEnumerable<Usuario> categories;
-                using (UnidadDeTrabajo<Usuario> unidad = new UnidadDeTrabajo<Usuario>(context))
+                IEnumerable<Usuario> usuarios;
+                using (UnidadDeTrabajoU<Usuario> unidad = new UnidadDeTrabajoU<Usuario>(context))
                 {
-                    categories = unidad.genericDAL.GetAll();
+                    usuarios = unidad.genericDAL.GetAll();
                 }
-                return categories.ToList();
+                return usuarios.ToList();
             }
             catch (Exception)
             {
@@ -89,12 +110,12 @@ namespace BackEnd.DAL
         {
             try
             {
-                IEnumerable<Usuario> categories;
-                using (UnidadDeTrabajo<Usuario> unidad = new UnidadDeTrabajo<Usuario>(context))
+                IEnumerable<Usuario> usuarios;
+                using (UnidadDeTrabajoU<Usuario> unidad = new UnidadDeTrabajoU<Usuario>(context))
                 {
-                    categories = unidad.genericDAL.GetAll();
+                    usuarios = unidad.genericDAL.GetAll();
                 }
-                return categories;
+                return usuarios;
             }
             catch (Exception)
             {
@@ -108,7 +129,7 @@ namespace BackEnd.DAL
             bool result = false;
             try
             {
-                using (UnidadDeTrabajo<Usuario> unidad = new UnidadDeTrabajo<Usuario>(context))
+                using (UnidadDeTrabajoU<Usuario> unidad = new UnidadDeTrabajoU<Usuario>(context))
                 {
                     unidad.genericDAL.Remove(entity);
                     result = unidad.Complete();
@@ -140,7 +161,7 @@ namespace BackEnd.DAL
 
             try
             {
-                using (UnidadDeTrabajo<Usuario> unidad = new UnidadDeTrabajo<Usuario>(context))
+                using (UnidadDeTrabajoU<Usuario> unidad = new UnidadDeTrabajoU<Usuario>(context))
                 {
                     unidad.genericDAL.Update(usuario);
                     result = unidad.Complete();

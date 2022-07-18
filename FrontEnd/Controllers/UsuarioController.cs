@@ -13,11 +13,11 @@ namespace FrontEnd.Controllers
         {
             IUsuarioDAL usuarioDAL;
 
-            List<Usuario> categories;
+            List<Usuario> usuarios;
             usuarioDAL = new UsuarioDALImpl();
-            categories = usuarioDAL.GetAll().ToList();
+            usuarios = usuarioDAL.GetAll().ToList();
 
-            return View(categories);
+            return View(usuarios);
         }
 
         public IActionResult Create()
@@ -71,6 +71,11 @@ namespace FrontEnd.Controllers
 
             usuarioDAL.Remove(usuario);
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Login()
+        {
+            return View();
         }
     }
 }
