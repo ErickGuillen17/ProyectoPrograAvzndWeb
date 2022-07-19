@@ -113,7 +113,7 @@ namespace BackEnd.DAL
                 IEnumerable<Usuario> usuarios;
                 using (UnidadDeTrabajoU<Usuario> unidad = new UnidadDeTrabajoU<Usuario>(context))
                 {
-                    usuarios = unidad.genericDAL.GetAll();
+                    usuarios = unidad.genericDAL.GetAll();                     
                 }
                 return usuarios;
             }

@@ -16,8 +16,7 @@ namespace BackEnd.DAL
         public UnidadDeTrabajoU(WorknetContext _context)
         {
             context = _context;
-            genericDAL = new DALGenericoImplu<T>(context);
-          
+            genericDAL = new DALGenericoImplu<T>(context);            
         }
 
         public bool Complete()
