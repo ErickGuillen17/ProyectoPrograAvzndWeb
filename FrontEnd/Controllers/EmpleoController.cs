@@ -11,11 +11,10 @@ namespace FrontEnd.Controllers
 
         public IActionResult Index()
         {
-            IEmpleoDAL empleoDAL;
 
             List<Empleo> empleos;
-            empleoDAL = new EmpleoDALImpl();
-            empleos = empleoDAL.GetAll().ToList();
+            EmpleoDALImpl empleoDAL = new EmpleoDALImpl();
+            empleos = empleoDAL.LlenarEmpleos().ToList();
 
             return View(empleos);
         }

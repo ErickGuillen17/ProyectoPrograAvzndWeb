@@ -1,4 +1,6 @@
 ﻿using BackEnd.Entities;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -155,6 +157,50 @@ namespace BackEnd.DAL
 
             return result;
         }
+
+        public List<Empleo> LlenarEmpleos()
+        {
+            List<Empleo> empleos = new List<Empleo>();
+
+            try
+            {
+                List<SP_Llenar_Empleos_Result> result;
+
+                string sql = "[dbo].[SP_Llenar_Empleos]";
+
+
+                result = context.SP_Llenar_Empleos_Result.FromSqlRaw(sql)
+                    .ToListAsync()
+                    .Result;
+
+                foreach (var item in result)
+                {
+                    empleos.Add(new Empleo
+                    {
+                        IdEmpleo = item.IdEmpleo,
+                        IdCategoria = item.IdCategoria,
+                        CorreoReclutador = item.CorreoReclutador,
+                        EmpleoNombre = item.EmpleoNombre,
+                        ExpMinima = item.ExpMinima,
+                        GradoEstudio = item.GradoEstudio,
+                        Compania = item.Compania,
+                        EstadoPuesto = item.EstadoPuesto,
+                        Descripcion = item.Descripcion,
+                        Requisitos = item.Requisitos,
+                        CategoriaDescripcion = item.CategoriaDescripcion
+                    });
+                }
+
+
+                return empleos;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
 
 
     }

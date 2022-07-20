@@ -76,6 +76,24 @@ namespace FrontEnd.Controllers
         public IActionResult Login()
         {
             return View();
+        }     
+        
+        [HttpPost]
+        public IActionResult Login(Usuario usuario)
+        {
+
+            UsuarioDALImpl usuarioDAL = new UsuarioDALImpl();
+            List<Usuario> resultado = usuarioDAL.Login(usuario.CorreoUsuario, usuario.Contrasena);
+
+            if (resultado.Count() >= 1)
+            {
+                return RedirectToAction("Index", "Empleo");
+            }
+            else
+            {
+                return View();
+            }
+
         }
     }
 }

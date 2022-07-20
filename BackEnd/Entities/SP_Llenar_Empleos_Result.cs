@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BackEnd.Entities
 {
-    public partial class Empleo
+    [Keyless]
+    public class SP_Llenar_Empleos_Result
     {
-        public Empleo()
-        {
-            Solicitud = new HashSet<Solicitud>();
-        }
-
         public long IdEmpleo { get; set; }
         public long IdCategoria { get; set; }
         public int ExpMinima { get; set; }
@@ -21,9 +21,6 @@ namespace BackEnd.Entities
         public string Requisitos { get; set; } = null!;
         public string CorreoReclutador { get; set; } = null!;
         public string CategoriaDescripcion { get; set; } = null!;
-
-        public virtual Reclutador CorreoReclutadorNavigation { get; set; } = null!;
-        public virtual Categoria IdCategoriaNavigation { get; set; } = null!;
-        public virtual ICollection<Solicitud> Solicitud { get; set; }
     }
+
 }

@@ -24,6 +24,8 @@ namespace BackEnd.Entities
         public virtual DbSet<Rol> Rol { get; set; } = null!;
         public virtual DbSet<Solicitud> Solicitud { get; set; } = null!;
         public virtual DbSet<Usuario> Usuario { get; set; } = null!;
+        public virtual DbSet<SP_Llenar_Empleos_Result> SP_Llenar_Empleos_Result { get; set; } = null!;
+        public virtual DbSet<SP_Buscar_Usuario_Result> SP_Buscar_Usuario_Result { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -1,4 +1,6 @@
 ﻿using BackEnd.Entities;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,26 +69,58 @@ namespace BackEnd.DAL
             }
         }
 
-        //public Usuario Login(string correo, string password)
-        //{
-        //    try
-        //    {
-        //        Usuario usuario;
-        //        using (UnidadDeTrabajoU<Usuario> unidad = new UnidadDeTrabajoU<Usuario>(context))
-        //        {
-        //            usuario = context.Usuario.FromSqlRaw<Usuario>("SP_Buscar_Usuario {0}", correo, password)
-        //                .ToList()
-        //                .FirstOrDefault();
-                    
-        //        }
-        //        return usuario;
-        //    }
-        //    catch (Exception)
-        //    {
+        public List<Usuario> Login(string correo, string password)
+        {
+            List<Usuario> usuario = new List<Usuario>();
 
-        //        throw;
-        //    }
-        //}
+            try
+            {
+                List<SP_Buscar_Usuario_Result> result;
+
+                string sql = "[dbo].[SP_Buscar_Usuario] @Correo, @Password";
+                var param = new SqlParameter[] {
+                        new SqlParameter() {
+                            ParameterName = "@Correo",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 50,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = correo
+                        },                       
+                        new SqlParameter() {
+                            ParameterName = "@Password",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 50,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = password
+                        }
+
+
+                };
+
+                result = context.SP_Buscar_Usuario_Result.FromSqlRaw(sql, param)
+                        .ToListAsync()
+                        .Result;
+
+
+                foreach (var item in result)
+                {
+                    usuario.Add(new Usuario
+                    {
+                        CorreoUsuario = item.CorreoUsuario,
+                        Contrasena = item.Contrasena,
+                        IdRol = item.IdRol
+                    });
+                }
+
+
+                return usuario;
+            }
+            catch (Exception e)
+            {
+
+                return null;
+            }
+        }
 
         public List<Usuario> Get()
         {
