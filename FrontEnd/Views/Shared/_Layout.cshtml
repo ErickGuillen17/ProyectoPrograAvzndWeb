@@ -463,6 +463,40 @@
               </ul>
             </div>
           </li>
+           <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#reclutadores" aria-expanded="false" aria-controls="reclutadores">
+              <i class="menu-icon mdi mdi-account-circle-outline"></i>
+              <span class="menu-title">Reclutadores</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="reclutadores">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> 
+                    <a class="nav-link" asp-area="" asp-controller="Reclutador" asp-action="Index">Lista de Reclutadores</a>
+                </li>
+                <li class="nav-item"> 
+                    <a class="nav-link" asp-area="" asp-controller="Reclutador" asp-action="Create">Registrar Reclutador</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#candidatos" aria-expanded="false" aria-controls="candidatos">
+              <i class="menu-icon mdi mdi-account-circle-outline"></i>
+              <span class="menu-title">Candidatos</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="candidatos">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> 
+                    <a class="nav-link" asp-area="" asp-controller="Candidato" asp-action="Index">Lista de Candidatos</a>
+                </li>
+                <li class="nav-item"> 
+                    <a class="nav-link" asp-area="" asp-controller="Candidato" asp-action="Create">Registrar Candidato</a>
+                </li>
+              </ul>
+            </div>
+          </li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#empleos" aria-expanded="false" aria-controls="empleos">
               <i class="menu-icon mdi mdi-briefcase"></i>

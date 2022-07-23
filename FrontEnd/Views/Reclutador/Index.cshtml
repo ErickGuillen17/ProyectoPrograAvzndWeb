@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BackEnd.Entities.Reclutador>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Reclutadores</h1>
+
+<h4>
+    <a asp-action="Create">Registrar</a>
+</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CorreoReclutador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreReclutador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApellidoReclutador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compania)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TelefonoReclutador)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorreoReclutador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreReclutador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApellidoReclutador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Compania)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefonoReclutador)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new {  id=item.CorreoReclutador  }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id=item.CorreoReclutador })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
