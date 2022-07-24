@@ -1,97 +1,91 @@
 ﻿using BackEnd.DAL;
 using BackEnd.Entities;
-using FrontEnd.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
     public class ReclutadorController : Controller
     {
+
         IReclutadorDAL reclutadorDAL;
-        IUsuarioDAL usuarioDAL;
-
-
-        private Reclutador Convertir(Reclutador reclutador)
+        // GET: ReclutadorController
+        public ActionResult listaReclutadores()
         {
-            return new Reclutador
-            {
-                CorreoReclutador = reclutador.CorreoReclutador,
-                NombreReclutador = reclutador.NombreReclutador,
-                ApellidoReclutador = reclutador.ApellidoReclutador,
-                Compania = reclutador.Compania,
-                TelefonoReclutador = reclutador.TelefonoReclutador
-            };
+            List<Reclutador> reclutadores;
+            ReclutadorDALImpl reclutadorDAL = new ReclutadorDALImpl();
+            reclutadores = reclutadorDAL.GetAll().ToList();
+
+            return View(reclutadores);
         }
 
-        #region Lista
-        public IActionResult Index()
+        // GET: ReclutadorController/Details/5
+        public ActionResult Details(int id)
         {
-            IReclutadorDAL reclutadorDAL;
-
-            List<Reclutador> reclutador;
-            reclutadorDAL = new ReclutadorDALImpl();
-            reclutador = reclutadorDAL.GetAll().ToList();
-
-            return View(reclutador);
-        }
-
-        #endregion
-
-        #region Agregar
-        public IActionResult Create()
-        {
-
             return View();
         }
 
+        // GET: ReclutadorController/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: ReclutadorController/Create
         [HttpPost]
-        public IActionResult Create(Reclutador reclutador)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(IFormCollection collection)
         {
-            reclutadorDAL = new ReclutadorDALImpl();
-            reclutadorDAL.Add(reclutador);
-
-            return RedirectToAction("Index","Reclutador");
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        #endregion
-
-        #region  Editar
-
-
-        public IActionResult Edit(string id)
+        // GET: ReclutadorController/Edit/5
+        public ActionResult Edit(int id)
         {
-            reclutadorDAL = new ReclutadorDALImpl();
-            Reclutador reclutador = reclutadorDAL.Get(id);
-            return View(Convertir(reclutador));
+            return View();
         }
+
+        // POST: ReclutadorController/Edit/5
         [HttpPost]
-        public IActionResult Edit(Reclutador reclutador)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, IFormCollection collection)
         {
-            reclutadorDAL = new ReclutadorDALImpl();
-
-            reclutadorDAL.Update(reclutador);
-            return RedirectToAction("Index","Reclutador");
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        #endregion
-
-
-        #region Eliminar
-        public IActionResult Delete(string id)
+        // GET: ReclutadorController/Delete/5
+        public ActionResult Delete(int id)
         {
-            reclutadorDAL = new ReclutadorDALImpl();
-            Reclutador reclutador = reclutadorDAL.Get(id);
-            return View(Convertir(reclutador));
+            return View();
         }
+
+        // POST: ReclutadorController/Delete/5
         [HttpPost]
-        public IActionResult Delete(Reclutador reclutador)
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
         {
-            reclutadorDAL = new ReclutadorDALImpl();
-
-            reclutadorDAL.Remove(reclutador);
-            return RedirectToAction("Index","Reclutador");
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
-
-        #endregion
     }
 }

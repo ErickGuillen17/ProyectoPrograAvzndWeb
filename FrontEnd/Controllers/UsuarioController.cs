@@ -8,6 +8,8 @@ namespace FrontEnd.Controllers
     public class UsuarioController : Controller
     {
         IUsuarioDAL usuarioDAL;
+        IusuarioReclutadorDAL reclutadorDAL;
+        IusuarioCandidatoDAL candidatoDAL;
 
         public IActionResult Index()
         {
@@ -19,6 +21,9 @@ namespace FrontEnd.Controllers
 
             return View(usuarios);
         }
+
+       
+
 
         public IActionResult Create()
         {
@@ -34,6 +39,53 @@ namespace FrontEnd.Controllers
             usuarioDAL.Add(usuario);
 
             return RedirectToAction("Index");
+        }
+
+
+        public IActionResult crearReclutador()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult crearReclutador(usuarioReclutador reclutador)
+        {
+            usuarioDAL = new UsuarioDALImpl();
+            reclutadorDAL = new usuarioReclutadorDALImpl();
+            Usuario usuario = new Usuario();
+            usuario.CorreoUsuario = reclutador.CorreoReclutador;
+            usuario.Contrasena = reclutador.contrasena;
+            usuario.IdRol = 1;
+            usuarioDAL.Add(usuario);
+            reclutadorDAL.Add(reclutador);
+
+
+
+            return RedirectToAction("Index","Usuario");
+
+        }
+
+        public IActionResult crearCandidato()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult crearCandidato(usuarioCandidato candidato)
+        {
+            usuarioDAL = new UsuarioDALImpl();
+             candidatoDAL= new usuarioCandidatoDALImpl();
+            Usuario usuario = new Usuario();
+            usuario.CorreoUsuario = candidato.CorreoUsuario;
+            usuario.Contrasena = candidato.contrasena;
+            usuario.IdRol = 2;
+            usuarioDAL.Add(usuario);
+            candidatoDAL.Add(candidato);
+
+
+
+            return RedirectToAction("Index", "Usuario");
+
         }
 
         public IActionResult Details(string id)

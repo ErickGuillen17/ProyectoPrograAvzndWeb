@@ -472,10 +472,10 @@
             <div class="collapse" id="reclutadores">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> 
-                    <a class="nav-link" asp-area="" asp-controller="Reclutador" asp-action="Index">Lista de Reclutadores</a>
+                    <a class="nav-link" asp-area="" asp-controller="Reclutador" asp-action="listaReclutadores">Lista de Reclutadores</a>
                 </li>
                 <li class="nav-item"> 
-                    <a class="nav-link" asp-area="" asp-controller="Reclutador" asp-action="Create">Registrar Reclutador</a>
+                    <a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="crearReclutador">Registrar Reclutador</a>
                 </li>
               </ul>
             </div>
@@ -489,10 +489,10 @@
             <div class="collapse" id="candidatos">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> 
-                    <a class="nav-link" asp-area="" asp-controller="Candidato" asp-action="Index">Lista de Candidatos</a>
+                    <a class="nav-link" asp-area="" asp-controller="Candidato" asp-action="listaCandidatos">Lista de Candidatos</a>
                 </li>
                 <li class="nav-item"> 
-                    <a class="nav-link" asp-area="" asp-controller="Candidato" asp-action="Create">Registrar Candidato</a>
+                    <a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="crearCandidato">Registrar Candidato</a>
                 </li>
               </ul>
             </div>
@@ -567,6 +567,7 @@
   <script src="~/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
 </body>
+@RenderSection("Scripts", required: false)
 
 </html>
 

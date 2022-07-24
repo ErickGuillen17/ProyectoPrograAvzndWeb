@@ -10,6 +10,7 @@ namespace BackEnd.DAL
 {
     public class ReclutadorDALImpl : IReclutadorDAL
     {
+
         WorknetContext context;
 
         public ReclutadorDALImpl()
@@ -19,21 +20,7 @@ namespace BackEnd.DAL
         }
         public bool Add(Reclutador entity)
         {
-            try
-            {
-
-                using (UnidadDeTrabajoU<Reclutador> unidad = new UnidadDeTrabajoU<Reclutador>(context))
-                {
-                    unidad.genericDAL.Add(entity);
-                    return unidad.Complete();
-                }
-
-            }
-            catch (Exception)
-            {
-
-                return false;
-            }
+            throw new NotImplementedException();
         }
 
         public void AddRange(IEnumerable<Reclutador> entities)
@@ -64,35 +51,16 @@ namespace BackEnd.DAL
             }
         }
 
-        public List<Reclutador> Get()
-        {
-            try
-            {
-                IEnumerable<Reclutador> reclutador;
-                using (UnidadDeTrabajoU<Reclutador> unidad = new UnidadDeTrabajoU<Reclutador>(context))
-                {
-                    reclutador = unidad.genericDAL.GetAll();
-                }
-                return reclutador.ToList();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
         public IEnumerable<Reclutador> GetAll()
         {
-
             try
             {
-                IEnumerable<Reclutador> reclutador;
-                using (UnidadDeTrabajoU<Reclutador> unidad = new UnidadDeTrabajoU<Reclutador>(context))
+                IEnumerable<Reclutador> reclutadores;
+                using (UnidadDeTrabajo<Reclutador> unidad = new UnidadDeTrabajo<Reclutador>(context))
                 {
-                    reclutador = unidad.genericDAL.GetAll();
+                    reclutadores = unidad.genericDAL.GetAll();
                 }
-                return reclutador;
+                return reclutadores;
             }
             catch (Exception)
             {
@@ -106,7 +74,7 @@ namespace BackEnd.DAL
             bool result = false;
             try
             {
-                using (UnidadDeTrabajoU<Reclutador> unidad = new UnidadDeTrabajoU<Reclutador>(context))
+                using (UnidadDeTrabajo<Reclutador> unidad = new UnidadDeTrabajo<Reclutador>(context))
                 {
                     unidad.genericDAL.Remove(entity);
                     result = unidad.Complete();
@@ -132,15 +100,15 @@ namespace BackEnd.DAL
             throw new NotImplementedException();
         }
 
-        public bool Update(Reclutador reclutador)
+        public bool Update(Reclutador entity)
         {
             bool result = false;
 
             try
             {
-                using (UnidadDeTrabajoU<Reclutador> unidad = new UnidadDeTrabajoU<Reclutador>(context))
+                using (UnidadDeTrabajo<Reclutador> unidad = new UnidadDeTrabajo<Reclutador>(context))
                 {
-                    unidad.genericDAL.Update(reclutador);
+                    unidad.genericDAL.Update(entity);
                     result = unidad.Complete();
                 }
 

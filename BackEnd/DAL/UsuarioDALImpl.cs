@@ -77,17 +77,17 @@ namespace BackEnd.DAL
             {
                 List<SP_Buscar_Usuario_Result> result;
 
-                string sql = "[dbo].[SP_Buscar_Usuario] @Correo, @Password";
+                string sql = "[dbo].[SP_Buscar_Usuario] @pCorreo, @pContrasena";
                 var param = new SqlParameter[] {
                         new SqlParameter() {
-                            ParameterName = "@Correo",
+                            ParameterName = "@pCorreo",
                             SqlDbType =  System.Data.SqlDbType.VarChar,
                             Size = 50,
                             Direction = System.Data.ParameterDirection.Input,
                             Value = correo
                         },                       
                         new SqlParameter() {
-                            ParameterName = "@Password",
+                            ParameterName = "@pContrasena",
                             SqlDbType =  System.Data.SqlDbType.VarChar,
                             Size = 50,
                             Direction = System.Data.ParameterDirection.Input,

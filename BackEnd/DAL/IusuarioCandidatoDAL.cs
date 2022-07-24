@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace BackEnd.DAL
 {
-
-    public interface  ICandidatoDAL : IDALGenericoU<Candidato>
+    public interface IusuarioCandidatoDAL : IDALGenericoU<usuarioCandidato>
     {
     }
 }

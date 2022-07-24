@@ -1,5 +1,6 @@
 ﻿using BackEnd.DAL;
 using BackEnd.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
@@ -7,92 +8,83 @@ namespace FrontEnd.Controllers
     public class CandidatoController : Controller
     {
         ICandidatoDAL candidatoDAL;
-
-
-        private Candidato Convertir(Candidato candidato)
+        // GET: CandidatoController
+        public ActionResult listaCandidatos()
         {
-            return new Candidato
-            {
-                NombreCandidato = candidato.NombreCandidato,
-                ApellidoCandidato = candidato.ApellidoCandidato,
-                ExpCandidato = candidato.ExpCandidato,
-                GradoEstudio = candidato.GradoEstudio,
-                TelefonoCandidato = candidato.TelefonoCandidato,
-                AreaInteres = candidato.AreaInteres,
-                CorreoUsuario = candidato.CorreoUsuario
-            };
+            List<Candidato> candidatos;
+            CandidatoDALImpl candidatoDAL = new CandidatoDALImpl();
+            candidatos = candidatoDAL.GetAll().ToList();
+
+            return View(candidatos);
         }
 
-        #region Lista
-        public IActionResult Index()
+        // GET: CandidatoController/Details/5
+        public ActionResult Details(int id)
         {
-            ICandidatoDAL candidatoDAL;
-
-            List<Candidato> candidato;
-            candidatoDAL = new CandidatoDALImpl();
-            candidato = candidatoDAL.GetAll().ToList();
-
-            return View(candidato);
-        }
-
-        #endregion
-
-        #region Agregar
-        public IActionResult Create()
-        {
-
             return View();
         }
 
+        // GET: CandidatoController/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: CandidatoController/Create
         [HttpPost]
-        public IActionResult Create(Candidato candidato)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(IFormCollection collection)
         {
-            candidatoDAL = new CandidatoDALImpl();
-            candidatoDAL.Add(candidato);
-
-            return RedirectToAction("Index", "Candidato");
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        #endregion
-
-        #region  Editar
-
-
-        public IActionResult Edit(string id)
+        // GET: CandidatoController/Edit/5
+        public ActionResult Edit(int id)
         {
-            candidatoDAL = new CandidatoDALImpl();
-            Candidato candidato = candidatoDAL.Get(id);
-            return View(Convertir(candidato));
+            return View();
         }
+
+        // POST: CandidatoController/Edit/5
         [HttpPost]
-        public IActionResult Edit(Candidato candidato)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, IFormCollection collection)
         {
-            candidatoDAL = new CandidatoDALImpl();
-
-            candidatoDAL.Update(candidato);
-            return RedirectToAction("Index", "Candidato");
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        #endregion
-
-
-        #region Eliminar
-        public IActionResult Delete(string id)
+        // GET: CandidatoController/Delete/5
+        public ActionResult Delete(int id)
         {
-            candidatoDAL = new CandidatoDALImpl();
-            Candidato candidato = candidatoDAL.Get(id);
-            return View(Convertir(candidato));
+            return View();
         }
+
+        // POST: CandidatoController/Delete/5
         [HttpPost]
-        public IActionResult Delete(Candidato candidato)
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
         {
-            candidatoDAL = new CandidatoDALImpl();
-
-            candidatoDAL.Remove(candidato);
-            return RedirectToAction("Index", "Candidato");
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
-
-        #endregion
-
     }
 }

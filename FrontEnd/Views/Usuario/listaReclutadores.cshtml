@@ -1,14 +1,15 @@
-﻿@model IEnumerable<BackEnd.Entities.Reclutador>
+﻿@model IEnumerable<BackEnd.Entities.usuarioReclutador>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "listaReclutadores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Lista de Reclutadores</h1>
+<h1>listaReclutadores</h1>
 
-<h4>
-    <a asp-action="Create">Registrar</a>
-</h4>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -27,6 +28,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.TelefonoReclutador)
             </th>
+           
+           
             <th></th>
         </tr>
     </thead>
@@ -48,9 +51,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TelefonoReclutador)
             </td>
+            
+            
             <td>
-                @Html.ActionLink("Editar", "Edit", new {  id=item.CorreoReclutador  }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id=item.CorreoReclutador })
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

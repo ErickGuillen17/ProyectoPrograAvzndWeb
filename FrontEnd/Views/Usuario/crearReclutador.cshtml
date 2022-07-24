@@ -1,20 +1,22 @@
-﻿@model BackEnd.Entities.Reclutador
+﻿@model BackEnd.Entities.usuarioReclutador
 
 @{
-    ViewData["Title"] = "Create";
+    Layout = "";
+    ViewData["Title"] = "crearReclutador";
+   
 }
 
-<h1>Create</h1>
+<h1>crearReclutador</h1>
 
-<h4>Reclutador</h4>
+<h4>usuarioReclutador</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="crearReclutador">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CorreoReclutador" class="control-label"></label>
-                <input asp-for="CorreoReclutador" class="form-control" type = "email" />
+                <input asp-for="CorreoReclutador" class="form-control" />
                 <span asp-validation-for="CorreoReclutador" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -38,6 +40,12 @@
                 <span asp-validation-for="TelefonoReclutador" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="contrasena" class="control-label"></label>
+                <input asp-for="contrasena" class="form-control" />
+                <span asp-validation-for="contrasena" class="text-danger"></span>
+            </div>
+         
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -48,3 +56,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

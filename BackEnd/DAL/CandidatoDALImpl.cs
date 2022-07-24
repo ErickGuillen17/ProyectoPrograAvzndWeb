@@ -19,21 +19,7 @@ namespace BackEnd.DAL
         }
         public bool Add(Candidato entity)
         {
-            try
-            {
-
-                using (UnidadDeTrabajoU<Candidato> unidad = new UnidadDeTrabajoU<Candidato>(context))
-                {
-                    unidad.genericDAL.Add(entity);
-                    return unidad.Complete();
-                }
-
-            }
-            catch (Exception)
-            {
-
-                return false;
-            }
+            throw new NotImplementedException();
         }
 
         public void AddRange(IEnumerable<Candidato> entities)
@@ -50,29 +36,12 @@ namespace BackEnd.DAL
         {
             try
             {
-                Candidato candidato;
+                Candidato Candidato;
                 using (UnidadDeTrabajoU<Candidato> unidad = new UnidadDeTrabajoU<Candidato>(context))
                 {
-                    candidato = unidad.genericDAL.Get(id);
+                    Candidato = unidad.genericDAL.Get(id);
                 }
-                return candidato;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-        public List<Candidato> Get()
-        {
-            try
-            {
-                IEnumerable<Candidato> candidato;
-                using (UnidadDeTrabajoU<Candidato> unidad = new UnidadDeTrabajoU<Candidato>(context))
-                {
-                    candidato = unidad.genericDAL.GetAll();
-                }
-                return candidato.ToList();
+                return Candidato;
             }
             catch (Exception)
             {
@@ -85,12 +54,12 @@ namespace BackEnd.DAL
         {
             try
             {
-                IEnumerable<Candidato> candidato;
-                using (UnidadDeTrabajoU<Candidato> unidad = new UnidadDeTrabajoU<Candidato>(context))
+                IEnumerable<Candidato> Candidatos;
+                using (UnidadDeTrabajo<Candidato> unidad = new UnidadDeTrabajo<Candidato>(context))
                 {
-                    candidato = unidad.genericDAL.GetAll();
+                    Candidatos = unidad.genericDAL.GetAll();
                 }
-                return candidato;
+                return Candidatos;
             }
             catch (Exception)
             {
@@ -104,7 +73,7 @@ namespace BackEnd.DAL
             bool result = false;
             try
             {
-                using (UnidadDeTrabajoU<Candidato> unidad = new UnidadDeTrabajoU<Candidato>(context))
+                using (UnidadDeTrabajo<Candidato> unidad = new UnidadDeTrabajo<Candidato>(context))
                 {
                     unidad.genericDAL.Remove(entity);
                     result = unidad.Complete();
@@ -130,15 +99,15 @@ namespace BackEnd.DAL
             throw new NotImplementedException();
         }
 
-        public bool Update(Candidato candidato)
+        public bool Update(Candidato entity)
         {
             bool result = false;
 
             try
             {
-                using (UnidadDeTrabajoU<Candidato> unidad = new UnidadDeTrabajoU<Candidato>(context))
+                using (UnidadDeTrabajo<Candidato> unidad = new UnidadDeTrabajo<Candidato>(context))
                 {
-                    unidad.genericDAL.Update(candidato);
+                    unidad.genericDAL.Update(entity);
                     result = unidad.Complete();
                 }
 
