@@ -18,6 +18,7 @@ namespace BackEnd.Entities
         public int TelefonoReclutador { get; set; }
 
         public string contrasena { get; set; }
+        public string confirmacion { get; set; }
 
         public long idrol { get; set; }
 

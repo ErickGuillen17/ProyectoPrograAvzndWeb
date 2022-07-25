@@ -50,19 +50,22 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public IActionResult crearReclutador(usuarioReclutador reclutador)
         {
-            usuarioDAL = new UsuarioDALImpl();
-            reclutadorDAL = new usuarioReclutadorDALImpl();
-            Usuario usuario = new Usuario();
-            usuario.CorreoUsuario = reclutador.CorreoReclutador;
-            usuario.Contrasena = reclutador.contrasena;
-            usuario.IdRol = 1;
-            usuarioDAL.Add(usuario);
-            reclutadorDAL.Add(reclutador);
-
-
-
-            return RedirectToAction("Index","Usuario");
-
+            if (reclutador.contrasena.Equals(reclutador.confirmacion))
+            {
+                usuarioDAL = new UsuarioDALImpl();
+                reclutadorDAL = new usuarioReclutadorDALImpl();
+                Usuario usuario = new Usuario();
+                usuario.CorreoUsuario = reclutador.CorreoReclutador;
+                usuario.Contrasena = reclutador.contrasena;
+                usuario.IdRol = 1;
+                usuarioDAL.Add(usuario);
+                reclutadorDAL.Add(reclutador);
+                return RedirectToAction("Index", "Usuario");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult crearCandidato()
@@ -73,19 +76,22 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public IActionResult crearCandidato(usuarioCandidato candidato)
         {
-            usuarioDAL = new UsuarioDALImpl();
-             candidatoDAL= new usuarioCandidatoDALImpl();
-            Usuario usuario = new Usuario();
-            usuario.CorreoUsuario = candidato.CorreoUsuario;
-            usuario.Contrasena = candidato.contrasena;
-            usuario.IdRol = 2;
-            usuarioDAL.Add(usuario);
-            candidatoDAL.Add(candidato);
-
-
-
-            return RedirectToAction("Index", "Usuario");
-
+            if (candidato.contrasena.Equals(candidato.confirmacion))
+            {
+                usuarioDAL = new UsuarioDALImpl();
+                candidatoDAL = new usuarioCandidatoDALImpl();
+                Usuario usuario = new Usuario();
+                usuario.CorreoUsuario = candidato.CorreoUsuario;
+                usuario.Contrasena = candidato.contrasena;
+                usuario.IdRol = 2;
+                usuarioDAL.Add(usuario);
+                candidatoDAL.Add(candidato);
+                return RedirectToAction("Index", "Usuario");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Details(string id)
@@ -139,6 +145,10 @@ namespace FrontEnd.Controllers
 
             if (resultado.Count() >= 1)
             {
+                HttpContext.Session.SetInt32("Rol", (int)resultado[0].IdRol);
+                HttpContext.Session.SetString("Correo", resultado[0].CorreoUsuario);
+                //HttpContext.Session.SetInt32["Rol"] = resultado[0].IdRol.ToString();
+                //Session["Correo"] = resultado[0].CorreoUsuario;
                 return RedirectToAction("Index", "Empleo");
             }
             else

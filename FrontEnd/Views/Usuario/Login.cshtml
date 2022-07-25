@@ -39,7 +39,7 @@
               </div>
               <h4>¡Hola! comencemos</h4>
               <h6 class="fw-light">Inicia sesión para continuar.</h6>
-              <form class="pt-3">
+              <form asp-action="Login" class="pt-3">
                 <div class="form-group">
                   <input type="email" asp-for="CorreoUsuario" class="form-control form-control-lg" placeholder="Email">
                 </div>
@@ -50,8 +50,6 @@
                   <a href="#" class="auth-link text-black">¿Olvidaste tu contraseña?</a>
                 </div>
                 <div class="mt-3">
-                    <button id="Button" type="submit" name="submit" formmethod="post" class="btn btn-secondary btn-sm">Save</button>
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">INICIAR SESIÓN</a>
                   <input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" value="Iniciar Sesión"/>
                 </div>
                 <div class="text-center mt-4 fw-light">

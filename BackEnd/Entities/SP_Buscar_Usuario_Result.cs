@@ -10,9 +10,9 @@ namespace BackEnd.Entities
     [Keyless]
     public class SP_Buscar_Usuario_Result
     {
-        public string CorreoUsuario { get; set; } = null!;
-        public string Contrasena { get; set; } = null!;
-        public long IdRol { get; set; }
+        public string CORREO_USUARIO { get; set; } = null!;
+        public string CONTRASENA { get; set; } = null!;
+        public long ID_ROL { get; set; }
     }
 
 }

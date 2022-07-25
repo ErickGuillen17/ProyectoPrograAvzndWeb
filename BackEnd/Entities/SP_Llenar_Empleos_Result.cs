@@ -10,17 +10,17 @@ namespace BackEnd.Entities
     [Keyless]
     public class SP_Llenar_Empleos_Result
     {
-        public long IdEmpleo { get; set; }
-        public long IdCategoria { get; set; }
-        public int ExpMinima { get; set; }
-        public string GradoEstudio { get; set; } = null!;
-        public string Compania { get; set; } = null!;
-        public string EmpleoNombre { get; set; } = null!;
-        public string EstadoPuesto { get; set; } = null!;
-        public string Descripcion { get; set; } = null!;
-        public string Requisitos { get; set; } = null!;
-        public string CorreoReclutador { get; set; } = null!;
-        public string CategoriaDescripcion { get; set; } = null!;
+        public long ID_EMPLEO { get; set; }
+        public long ID_CATEGORIA { get; set; }
+        public int EXP_MINIMA { get; set; }
+        public string GRADO_ESTUDIO { get; set; } = null!;
+        public string COMPANIA { get; set; } = null!;
+        public string EMPLEO_NOMBRE { get; set; } = null!;
+        public string ESTADO_PUESTO { get; set; } = null!;
+        public string DESCRIPCION { get; set; } = null!;
+        public string REQUISITOS { get; set; } = null!;
+        public string CORREO_RECLUTADOR { get; set; } = null!;
+        public string CATEGORIA_DESCRIPCION { get; set; } = null!;
     }
 
 }

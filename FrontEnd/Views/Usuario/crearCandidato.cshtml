@@ -2,70 +2,116 @@
 
 @{
     Layout = "";
-    ViewData["Title"] = "crearCandidato";
-     
-   
+    ViewData["Title"] = "crearCandidato";        
 }
 
-<h1>crearCandidato</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<h4>usuarioCandidato</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>WorkNet </title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../../vendors/feather/feather.css">
+  <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../../vendors/typicons/typicons.css">
+  <link rel="stylesheet" href="../../vendors/simple-line-icons/css/simple-line-icons.css">
+  <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+   <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="brand-logo">
+                <img src="../../images/logo.svg" alt="logo">
+              </div>
         <form asp-action="crearCandidato">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="NombreCandidato" class="control-label"></label>
-                <input asp-for="NombreCandidato" class="form-control" />
-                <span asp-validation-for="NombreCandidato" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApellidoCandidato" class="control-label"></label>
-                <input asp-for="ApellidoCandidato" class="form-control" />
-                <span asp-validation-for="ApellidoCandidato" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExpCandidato" class="control-label"></label>
-                <input asp-for="ExpCandidato" class="form-control" />
-                <span asp-validation-for="ExpCandidato" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GradoEstudio" class="control-label"></label>
-                <input asp-for="GradoEstudio" class="form-control" />
-                <span asp-validation-for="GradoEstudio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TelefonoCandidato" class="control-label"></label>
-                <input asp-for="TelefonoCandidato" class="form-control" />
-                <span asp-validation-for="TelefonoCandidato" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AreaInteres" class="control-label"></label>
-                <input asp-for="AreaInteres" class="form-control" />
-                <span asp-validation-for="AreaInteres" class="text-danger"></span>
+            <div class="row form-group" >
+                <div class="col-6">
+                    <label asp-for="NombreCandidato" class="control-label"></label>
+                    <input type="text" asp-for="NombreCandidato" class="form-control form-control-lg" placeholder="Nombre">
+                </div>
+                <div class="col-6">
+                    <label asp-for="ApellidoCandidato" class="control-label"></label>
+                    <input type="text" asp-for="ApellidoCandidato" class="form-control form-control-lg" placeholder="Apellido">
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="CorreoUsuario" class="control-label"></label>
-                <input asp-for="CorreoUsuario" class="form-control" />
-                <span asp-validation-for="CorreoUsuario" class="text-danger"></span>
+                <input type="email" asp-for="CorreoUsuario" class="form-control form-control-lg" placeholder="Correo">
+            </div>
+            <div class="row form-group" >
+                <div class="col-6">
+                    <label asp-for="contrasena" class="control-label"></label>
+                    <input type="password" asp-for="contrasena" class="form-control form-control-lg" placeholder="Contraseña">
+                </div>
+                <div class="col-6">
+                    <label asp-for="confirmacion" class="control-label"></label>
+                    <input type="password" asp-for="confirmacion" class="form-control form-control-lg" placeholder="Confirmación">
+                </div>
+            </div>
+            <div class="row form-group" >
+                <div class="col-6">
+                    <label asp-for="ExpCandidato" class="control-label"></label>
+                    <input type="number" asp-for="ExpCandidato" class="form-control form-control-lg" placeholder="Años de experiencia">
+                </div>
+                <div class="col-6">
+                    <label asp-for="TelefonoCandidato" class="control-label"></label>
+                    <input type="number" asp-for="TelefonoCandidato" class="form-control form-control-lg" placeholder="Teléfono">
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="contrasena" class="control-label"></label>
-                <input asp-for="contrasena" class="form-control" />
-                <span asp-validation-for="contrasena" class="text-danger"></span>
+                <label asp-for="GradoEstudio" class="control-label"></label>
+                <input type="text" asp-for="GradoEstudio" class="form-control form-control-lg" placeholder="Grado de estudio">
             </div>
-        
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="AreaInteres" class="control-label"></label>
+                <input type="text" asp-for="AreaInteres" class="form-control form-control-lg" placeholder="Área de interés">
+            </div>        
+            <div class="form-group">
+                <input type="submit" value="Crear cuenta" class="btn btn-primary" />
             </div>
         </form>
+            </div>      
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
     </div>
-</div>
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<script src="../../vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="../../vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="../../js/off-canvas.js"></script>
+<script src="../../js/hoverable-collapse.js"></script>
+<script src="../../js/template.js"></script>
+<script src="../../js/settings.js"></script>
+<script src="../../js/todolist.js"></script>
+<!-- endinject -->
+</body>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</html>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

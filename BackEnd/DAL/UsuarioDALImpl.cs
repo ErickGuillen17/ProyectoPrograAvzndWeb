@@ -81,14 +81,14 @@ namespace BackEnd.DAL
                 var param = new SqlParameter[] {
                         new SqlParameter() {
                             ParameterName = "@pCorreo",
-                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            SqlDbType =  System.Data.SqlDbType.NVarChar,
                             Size = 50,
                             Direction = System.Data.ParameterDirection.Input,
                             Value = correo
                         },                       
                         new SqlParameter() {
                             ParameterName = "@pContrasena",
-                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            SqlDbType =  System.Data.SqlDbType.NVarChar,
                             Size = 50,
                             Direction = System.Data.ParameterDirection.Input,
                             Value = password
@@ -106,9 +106,9 @@ namespace BackEnd.DAL
                 {
                     usuario.Add(new Usuario
                     {
-                        CorreoUsuario = item.CorreoUsuario,
-                        Contrasena = item.Contrasena,
-                        IdRol = item.IdRol
+                        CorreoUsuario = item.CORREO_USUARIO,
+                        Contrasena = item.CONTRASENA,
+                        IdRol = item.ID_ROL
                     });
                 }
 

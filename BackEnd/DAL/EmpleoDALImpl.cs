@@ -177,17 +177,17 @@ namespace BackEnd.DAL
                 {
                     empleos.Add(new Empleo
                     {
-                        IdEmpleo = item.IdEmpleo,
-                        IdCategoria = item.IdCategoria,
-                        CorreoReclutador = item.CorreoReclutador,
-                        EmpleoNombre = item.EmpleoNombre,
-                        ExpMinima = item.ExpMinima,
-                        GradoEstudio = item.GradoEstudio,
-                        Compania = item.Compania,
-                        EstadoPuesto = item.EstadoPuesto,
-                        Descripcion = item.Descripcion,
-                        Requisitos = item.Requisitos,
-                        CategoriaDescripcion = item.CategoriaDescripcion
+                        IdEmpleo = item.ID_EMPLEO,
+                        IdCategoria = item.ID_CATEGORIA,
+                        CorreoReclutador = item.CORREO_RECLUTADOR,
+                        EmpleoNombre = item.EMPLEO_NOMBRE,
+                        ExpMinima = item.EXP_MINIMA,
+                        GradoEstudio = item.GRADO_ESTUDIO,
+                        Compania = item.COMPANIA,
+                        EstadoPuesto = item.ESTADO_PUESTO,
+                        Descripcion = item.DESCRIPCION,
+                        Requisitos = item.REQUISITOS,
+                        CategoriaDescripcion = item.CATEGORIA_DESCRIPCION
                     });
                 }
 

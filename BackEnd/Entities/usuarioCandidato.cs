@@ -17,6 +17,7 @@ namespace BackEnd.Entities
         public string CorreoUsuario { get; set; } = null!;
 
         public string  contrasena { get; set; }
+        public string confirmacion { get; set; }
 
         public long idrol { get; set; }
 
