@@ -145,8 +145,8 @@ namespace FrontEnd.Controllers
 
             if (resultado.Count() >= 1)
             {
-                HttpContext.Session.SetInt32("Rol", (int)resultado[0].IdRol);
-                HttpContext.Session.SetString("Correo", resultado[0].CorreoUsuario);
+                //HttpContext.Session.SetInt32("Rol", (int)resultado[0].IdRol);
+                //HttpContext.Session.SetString("Correo", resultado[0].CorreoUsuario);
                 //HttpContext.Session.SetInt32["Rol"] = resultado[0].IdRol.ToString();
                 //Session["Correo"] = resultado[0].CorreoUsuario;
                 return RedirectToAction("Index", "Empleo");
