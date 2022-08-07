@@ -122,6 +122,7 @@ namespace BackEnd.DAL
             }
         }
 
+      
         public List<Usuario> Get()
         {
             try
@@ -210,6 +211,9 @@ namespace BackEnd.DAL
 
             return result;
         }
+
+
+       
 
 
     }

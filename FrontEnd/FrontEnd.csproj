@@ -8,10 +8,74 @@
 
   <ItemGroup>
     <Content Remove="Views\Home\Login.cshtml" />
+    <Content Remove="wwwroot\Content\images\amazon.jpg" />
+    <Content Remove="wwwroot\Content\images\back_disabled.png" />
+    <Content Remove="wwwroot\Content\images\back_enabled.png" />
+    <Content Remove="wwwroot\Content\images\back_enabled_hover.png" />
+    <Content Remove="wwwroot\Content\images\forward_disabled.png" />
+    <Content Remove="wwwroot\Content\images\forward_enabled.png" />
+    <Content Remove="wwwroot\Content\images\forward_enabled_hover.png" />
+    <Content Remove="wwwroot\Content\images\IBM.jpg" />
+    <Content Remove="wwwroot\Content\images\intel.jpg" />
+    <Content Remove="wwwroot\Content\images\loading.gif" />
+    <Content Remove="wwwroot\Content\images\mac.jpg" />
+    <Content Remove="wwwroot\Content\images\mclovin.jpg" />
+    <Content Remove="wwwroot\Content\images\person.png" />
+    <Content Remove="wwwroot\Content\images\sykes.png" />
+    <Content Remove="wwwroot\Content\images\unilever.jpg" />
+    <Content Remove="wwwroot\Content\images\userdefault.png" />
+    <Content Remove="wwwroot\images\amazon.jpg" />
+    <Content Remove="wwwroot\images\back_disabled.png" />
+    <Content Remove="wwwroot\images\back_enabled.png" />
+    <Content Remove="wwwroot\images\back_enabled_hover.png" />
+    <Content Remove="wwwroot\images\forward_disabled.png" />
+    <Content Remove="wwwroot\images\forward_enabled.png" />
+    <Content Remove="wwwroot\images\forward_enabled_hover.png" />
+    <Content Remove="wwwroot\images\IBM.jpg" />
+    <Content Remove="wwwroot\images\intel.jpg" />
+    <Content Remove="wwwroot\images\loading.gif" />
+    <Content Remove="wwwroot\images\mac.jpg" />
+    <Content Remove="wwwroot\images\mclovin.jpg" />
+    <Content Remove="wwwroot\images\person.png" />
+    <Content Remove="wwwroot\images\sykes.png" />
+    <Content Remove="wwwroot\images\unilever.jpg" />
+    <Content Remove="wwwroot\images\userdefault.png" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Views\Usuario\Login.cshtml" />
+    <None Include="wwwroot\Content\images\amazon.jpg" />
+    <None Include="wwwroot\Content\images\back_disabled.png" />
+    <None Include="wwwroot\Content\images\back_enabled.png" />
+    <None Include="wwwroot\Content\images\back_enabled_hover.png" />
+    <None Include="wwwroot\Content\images\forward_disabled.png" />
+    <None Include="wwwroot\Content\images\forward_enabled.png" />
+    <None Include="wwwroot\Content\images\forward_enabled_hover.png" />
+    <None Include="wwwroot\Content\images\IBM.jpg" />
+    <None Include="wwwroot\Content\images\intel.jpg" />
+    <None Include="wwwroot\Content\images\loading.gif" />
+    <None Include="wwwroot\Content\images\mac.jpg" />
+    <None Include="wwwroot\Content\images\mclovin.jpg" />
+    <None Include="wwwroot\Content\images\person.png" />
+    <None Include="wwwroot\Content\images\sykes.png" />
+    <None Include="wwwroot\Content\images\unilever.jpg" />
+    <None Include="wwwroot\Content\images\userdefault.png" />
+    <None Include="wwwroot\images\amazon.jpg" />
+    <None Include="wwwroot\images\back_disabled.png" />
+    <None Include="wwwroot\images\back_enabled.png" />
+    <None Include="wwwroot\images\back_enabled_hover.png" />
+    <None Include="wwwroot\images\forward_disabled.png" />
+    <None Include="wwwroot\images\forward_enabled.png" />
+    <None Include="wwwroot\images\forward_enabled_hover.png" />
+    <None Include="wwwroot\images\IBM.jpg" />
+    <None Include="wwwroot\images\intel.jpg" />
+    <None Include="wwwroot\images\loading.gif" />
+    <None Include="wwwroot\images\mac.jpg" />
+    <None Include="wwwroot\images\mclovin.jpg" />
+    <None Include="wwwroot\images\person.png" />
+    <None Include="wwwroot\images\sykes.png" />
+    <None Include="wwwroot\images\unilever.jpg" />
+    <None Include="wwwroot\images\userdefault.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +83,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

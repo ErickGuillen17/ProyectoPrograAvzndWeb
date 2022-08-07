@@ -7,17 +7,22 @@ namespace FrontEnd.Controllers
 {
     public class UsuarioController : Controller
     {
+       
         IUsuarioDAL usuarioDAL;
         IusuarioReclutadorDAL reclutadorDAL;
         IusuarioCandidatoDAL candidatoDAL;
 
+        public int Session { get; private set; }
+
         public IActionResult Index()
         {
+           
             IUsuarioDAL usuarioDAL;
 
             List<Usuario> usuarios;
             usuarioDAL = new UsuarioDALImpl();
             usuarios = usuarioDAL.GetAll().ToList();
+           
 
             return View(usuarios);
         }
@@ -145,17 +150,40 @@ namespace FrontEnd.Controllers
 
             if (resultado.Count() >= 1)
             {
-                //HttpContext.Session.SetInt32("Rol", (int)resultado[0].IdRol);
-                //HttpContext.Session.SetString("Correo", resultado[0].CorreoUsuario);
-                //HttpContext.Session.SetInt32["Rol"] = resultado[0].IdRol.ToString();
-                //Session["Correo"] = resultado[0].CorreoUsuario;
-                return RedirectToAction("Index", "Empleo");
+
+                var nombre = resultado[0].CorreoUsuario;
+                var rol = Convert.ToString(resultado[0].IdRol);
+                HttpContext.Session.SetString("nombre", nombre);
+                HttpContext.Session.SetString("rol", rol);
+
+                if (resultado[0].IdRol == 2)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Empleo");
+
+                }
+
+
+
+
+
+                
             }
             else
             {
                 return View();
             }
 
+        }
+
+        public IActionResult cerrarSesion()
+        {
+            HttpContext.Session.Clear();
+
+            return RedirectToAction("Login", "Usuario");
         }
     }
 }

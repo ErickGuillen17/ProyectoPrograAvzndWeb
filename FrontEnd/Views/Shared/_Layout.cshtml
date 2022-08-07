@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿ @using Microsoft.AspNetCore.Http;
+ @inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -45,7 +48,7 @@
       <div class="navbar-menu-wrapper d-flex align-items-top"> 
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-            <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">John Doe</span></h1>
+            <h1 class="welcome-text">Buenos dias, <span class="text-black fw-bold"> <p>@HttpContextAccessor.HttpContext.Session.GetString("nombre")</p></span></h1>
 
             <h3 class="welcome-sub-text">Your performance summary this week </h3>
           </li>
@@ -189,8 +192,9 @@
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
-            </div>
+             <a>@Html.ActionLink("Salir", "cerrarSesion", "Usuario", routeValues: new { area = "" }, htmlAttributes: new { @class = "dropdown-item" })</a>
+
+          </div>
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
@@ -444,45 +448,49 @@
             </div>
           </li>
           <li class="nav-item nav-category">pages</li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#usuarios" aria-expanded="false" aria-controls="usuarios">
+         
+          @if(@HttpContextAccessor.HttpContext.Session.GetString("rol").Equals("1")){
+                <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#solicitudes" aria-expanded="false" aria-controls="solicitudes">
               <i class="menu-icon mdi mdi-account-circle-outline"></i>
-              <span class="menu-title">Usuarios</span>
+              <span class="menu-title">Solicitudes</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="usuarios">
+            <div class="collapse" id="solicitudes">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> 
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Login">Login</a>
+                    <a class="nav-link" asp-area="" asp-controller="Reclutador" asp-action="listaReclutadores">Solicitudes recibidas</a>
                 </li>
-                <li class="nav-item"> 
-                    <a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="Index">Usuarios</a>
-                </li>
-                <li class="nav-item"> 
-                    <a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="Create">Crear</a>
-                </li>
+               
               </ul>
             </div>
-          </li>
-           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#reclutadores" aria-expanded="false" aria-controls="reclutadores">
-              <i class="menu-icon mdi mdi-account-circle-outline"></i>
-              <span class="menu-title">Reclutadores</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="reclutadores">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> 
-                    <a class="nav-link" asp-area="" asp-controller="Reclutador" asp-action="listaReclutadores">Lista de Reclutadores</a>
-                </li>
-                <li class="nav-item"> 
-                    <a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="crearReclutador">Registrar Reclutador</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#candidatos" aria-expanded="false" aria-controls="candidatos">
+                        </li>
+                    }
+                    else
+                    {
+                            <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#solicitudes" aria-expanded="false" aria-controls="solicitudes">
+                          <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                          <span class="menu-title">Solicitudes</span>
+                          <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="solicitudes">
+                          <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> 
+                                <a class="nav-link" asp-area="" asp-controller="Reclutador" asp-action="listaReclutadores">Solicitudes enviadas</a>
+                            </li>
+               
+                          </ul>
+                        </div>
+                                    </li>
+
+                       
+                    }  
+            
+                    @if (@HttpContextAccessor.HttpContext.Session.GetString("rol").Equals("1"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#candidatos" aria-expanded="false" aria-controls="candidatos">
               <i class="menu-icon mdi mdi-account-circle-outline"></i>
               <span class="menu-title">Candidatos</span>
               <i class="menu-arrow"></i>
@@ -492,12 +500,11 @@
                 <li class="nav-item"> 
                     <a class="nav-link" asp-area="" asp-controller="Candidato" asp-action="listaCandidatos">Lista de Candidatos</a>
                 </li>
-                <li class="nav-item"> 
-                    <a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="crearCandidato">Registrar Candidato</a>
-                </li>
+               
               </ul>
             </div>
           </li>
+          }
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#empleos" aria-expanded="false" aria-controls="empleos">
               <i class="menu-icon mdi mdi-briefcase"></i>
@@ -506,18 +513,30 @@
             </a>
             <div class="collapse" id="empleos">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> 
+
+                                @if (@HttpContextAccessor.HttpContext.Session.GetString("rol").Equals("2"))
+                                {
+                                              <li class="nav-item"> 
                     <a class="nav-link" asp-area="" asp-controller="Empleo" asp-action="Index">Empleos disponibles</a>
                 </li>
-                <li class="nav-item"> 
-                    <a class="nav-link" href="pages/ui-features/dropdowns.html">Empleos publicados</a>
-                </li>
-                <li class="nav-item"> 
+               
+                  <li class="nav-item"> 
                     <a class="nav-link" href="pages/ui-features/typography.html">Empleo inteligente</a>
                 </li>
-                <li class="nav-item"> 
+                                }else{
+                                     <li class="nav-item"> 
                     <a class="nav-link" asp-area="" asp-controller="Empleo" asp-action="Create">Publicar empleo</a>
                 </li>
+                  <li class="nav-item"> 
+                    <a class="nav-link" href="pages/ui-features/dropdowns.html">Empleos publicados</a>
+                </li>
+
+
+                                }
+                      
+               
+              
+               
               </ul>
             </div>
           </li>
