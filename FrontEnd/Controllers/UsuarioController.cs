@@ -148,7 +148,7 @@ namespace FrontEnd.Controllers
             UsuarioDALImpl usuarioDAL = new UsuarioDALImpl();
             List<Usuario> resultado = usuarioDAL.Login(usuario.CorreoUsuario, usuario.Contrasena);
 
-            if (resultado.Count() >= 1)
+             if (resultado.Count() >= 1)
             {
 
                 var nombre = resultado[0].CorreoUsuario;

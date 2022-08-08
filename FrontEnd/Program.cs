@@ -1,3 +1,7 @@
+using BackEnd.Entities;
+using BackEnd.Utilities;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,6 +16,10 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+builder.Services.AddDbContext<WorknetContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+string connString = builder.Configuration.GetConnectionString("DefaultConnection");
+Util.ConnectionString = connString;
 
 var app = builder.Build();
 
