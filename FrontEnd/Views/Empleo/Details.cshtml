@@ -3,47 +3,43 @@
 <div class="col-6 grid-margin stretch-card" style="margin-left: auto;margin-right: auto;">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Crear oferta de empleo</h4>
+            <h4 class="card-title">Información del empleo</h4>
             <form class="forms-sample" asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="EmpleoNombre" class="control-label"></label>
-                    <input asp-for="EmpleoNombre" type="text" class="form-control" />
+                    <input asp-for="EmpleoNombre" type="text" class="form-control" readonly />
                     <span asp-validation-for="EmpleoNombre" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Descripcion" class="control-label"></label>
-                    <textarea asp-for="Descripcion" type="text" class="form-control" style="height: 100px;"> </textarea>
+                    <textarea asp-for="Descripcion" type="text" class="form-control" style="height: 100px;" readonly> </textarea>
                     <span asp-validation-for="Descripcion" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Requisitos" class="control-label"></label>
-                    <textarea asp-for="Requisitos" type="text" class="form-control" style="height: 100px;"> </textarea>
+                    <textarea asp-for="Requisitos" type="text" class="form-control" style="height: 100px;" readonly> </textarea>
                     <span asp-validation-for="Requisitos" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="ExpMinima" class="control-label"></label>
-                    <input asp-for="ExpMinima" class="form-control" />
+                    <input asp-for="ExpMinima" class="form-control" readonly/>
                     <span asp-validation-for="ExpMinima" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="GradoEstudio" class="control-label"></label>
-                    <input asp-for="GradoEstudio" class="form-control" />
+                    <input asp-for="GradoEstudio" class="form-control" readonly/>
                     <span asp-validation-for="GradoEstudio" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="IdCategoria" class="control-label"></label>
-                    <input asp-for="IdCategoria" class="form-control" />
-                    <span asp-validation-for="IdCategoria" class="text-danger"></span>
+                    <label asp-for="CategoriaDescripcion" class="control-label"></label>
+                    <input asp-for="CategoriaDescripcion" class="form-control" readonly/>
+                    <span asp-validation-for="CategoriaDescripcion" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Publicar" class="btn btn-primary" />
+                    <input type="submit" value="Aplicar" class="btn btn-primary" />
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

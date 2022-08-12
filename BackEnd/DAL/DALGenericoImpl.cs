@@ -56,7 +56,7 @@ namespace BackEnd.DAL
             }
         }
 
-        public TEntity Get(int id)
+        public TEntity Get(long id)
         {
             try
             {

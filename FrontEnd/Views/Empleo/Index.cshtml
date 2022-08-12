@@ -1,17 +1,13 @@
-﻿@model IEnumerable<BackEnd.Entities.Empleo>
-
-@{
-    ViewData["Title"] = "Index";
-}
+﻿@model IEnumerable<FrontEnd.Models.EmpleoViewModel>
 
 
-            <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Empleos disponibles</h4>
-                  <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Empleos disponibles</h4>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.EmpleoNombre)
@@ -20,7 +16,7 @@
                                 @Html.DisplayNameFor(model => model.Compania)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.IdCategoria)
+                                @Html.DisplayNameFor(model => model.CategoriaDescripcion)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.ExpMinima)
@@ -31,9 +27,9 @@
                             <th>
                             </th>
                         </tr>
-                      </thead>
-                      <tbody>
-@foreach (var item in Model) {
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model) {
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.EmpleoNombre)
@@ -42,7 +38,7 @@
                                     @Html.DisplayFor(modelItem => item.Compania)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.IdCategoria)
+                                    @Html.DisplayFor(modelItem => item.CategoriaDescripcion)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.ExpMinima)
@@ -50,15 +46,15 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.GradoEstudio)
                                 </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">Ver más</button>
-                                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })*@
+                                <td>                                    
+                                    <input type="button" value="Ver más" class="btn btn-primary" 
+                                           onclick="location.href='@Url.Action("Details", "Empleo", new { id = item.IdEmpleo })'">
                                 </td>
                             </tr>
-                    }
-                        </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
+                        }
+                    </tbody>
+                </table>
             </div>
+        </div>
+    </div>
+</div>

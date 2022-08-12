@@ -32,6 +32,8 @@ namespace BackEnd.Entities
         public virtual DbSet<Usuario> Usuario { get; set; } = null!;
         public virtual DbSet<SP_Llenar_Empleos_Result> SP_Llenar_Empleos_Result { get; set; } = null!;
         public virtual DbSet<SP_Buscar_Usuario_Result> SP_Buscar_Usuario_Result { get; set; } = null!;
+        public virtual DbSet<SP_Consultar_Empleo_Result> SP_Consultar_Empleo_Result { get; set; } = null!;
+        public virtual DbSet<SP_Empleo_Inteligente_Result> SP_Empleo_Inteligente_Result { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -10,12 +10,10 @@ builder.Services.AddMvc().AddSessionStateTempDataProvider();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromSeconds(10);
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
-});
+builder.Services.AddSession(
+    options =>
+    { options.IdleTimeout = TimeSpan.FromMinutes(20); }
+    );
 
 builder.Services.AddDbContext<WorknetContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 string connString = builder.Configuration.GetConnectionString("DefaultConnection");

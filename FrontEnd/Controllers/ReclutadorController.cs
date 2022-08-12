@@ -19,8 +19,17 @@ namespace FrontEnd.Controllers
             return View(reclutadores);
         }
 
+        public ActionResult buscarReclutador(string correo)
+        {
+            Reclutador reclutador;
+            ReclutadorDALImpl reclutadorDAL = new ReclutadorDALImpl();
+            reclutador = reclutadorDAL.Get(correo);
+
+            return View(reclutador);
+        }
+
         // GET: ReclutadorController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string correo)
         {
             return View();
         }

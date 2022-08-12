@@ -51,7 +51,7 @@ namespace BackEnd.DAL
             throw new NotImplementedException();
         }
 
-        public Empleo Get(int id)
+        public Empleo Get(long id)
         {
             try
             {
@@ -170,6 +170,121 @@ namespace BackEnd.DAL
 
 
                 result = context.SP_Llenar_Empleos_Result.FromSqlRaw(sql)
+                    .ToListAsync()
+                    .Result;
+
+                foreach (var item in result)
+                {
+                    empleos.Add(new Empleo
+                    {
+                        IdEmpleo = item.ID_EMPLEO,
+                        IdCategoria = item.ID_CATEGORIA,
+                        CorreoReclutador = item.CORREO_RECLUTADOR,
+                        EmpleoNombre = item.EMPLEO_NOMBRE,
+                        ExpMinima = item.EXP_MINIMA,
+                        GradoEstudio = item.GRADO_ESTUDIO,
+                        Compania = item.COMPANIA,
+                        EstadoPuesto = item.ESTADO_PUESTO,
+                        Descripcion = item.DESCRIPCION,
+                        Requisitos = item.REQUISITOS,
+                        CategoriaDescripcion = item.CATEGORIA_DESCRIPCION
+                    });
+                }
+
+
+                return empleos;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        public List<Empleo> consultarEmpleo(long id)
+        {
+            List<Empleo> empleos = new List<Empleo>();
+
+            try
+            {
+                List<SP_Consultar_Empleo_Result> result;
+
+                string sql = "[dbo].[SP_Consultar_Empleo] @pIdEmpleo";
+
+                var param = new SqlParameter[] {
+                        new SqlParameter() {
+                            ParameterName = "@pIdEmpleo",
+                            SqlDbType =  System.Data.SqlDbType.BigInt,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = id
+                        }
+                };
+
+                result = context.SP_Consultar_Empleo_Result.FromSqlRaw(sql, param)
+                    .ToListAsync()
+                    .Result;
+
+                foreach (var item in result)
+                {
+                    empleos.Add(new Empleo
+                    {
+                        IdEmpleo = item.ID_EMPLEO,
+                        IdCategoria = item.ID_CATEGORIA,
+                        CorreoReclutador = item.CORREO_RECLUTADOR,
+                        EmpleoNombre = item.EMPLEO_NOMBRE,
+                        ExpMinima = item.EXP_MINIMA,
+                        GradoEstudio = item.GRADO_ESTUDIO,
+                        Compania = item.COMPANIA,
+                        EstadoPuesto = item.ESTADO_PUESTO,
+                        Descripcion = item.DESCRIPCION,
+                        Requisitos = item.REQUISITOS,
+                        CategoriaDescripcion = item.categoria_descripcion
+                    });
+                }
+
+
+                return empleos;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        public List<Empleo> EmpleoInteligente(long areaInteres, int exp, string gradoEstudio )
+        {
+            List<Empleo> empleos = new List<Empleo>();
+
+            try
+            {
+                List<SP_Empleo_Inteligente_Result> result;
+
+                string sql = "[dbo].[SP_Empleo_Inteligente] @pAreaInteres,@pExp,@pGradoEstudio";
+
+                var param = new SqlParameter[] {
+                        new SqlParameter() {
+                            ParameterName = "@pAreaInteres",
+                            SqlDbType =  System.Data.SqlDbType.BigInt,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = areaInteres
+                        },                      
+                        new SqlParameter() {
+                            ParameterName = "@pExp",
+                            SqlDbType =  System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = exp
+                        },                      
+                        new SqlParameter() {
+                            ParameterName = "@pGradoEstudio",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 50,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = gradoEstudio
+                        }
+                };
+
+                result = context.SP_Empleo_Inteligente_Result.FromSqlRaw(sql, param)
                     .ToListAsync()
                     .Result;
 

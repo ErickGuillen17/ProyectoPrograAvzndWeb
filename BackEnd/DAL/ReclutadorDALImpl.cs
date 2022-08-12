@@ -33,14 +33,14 @@ namespace BackEnd.DAL
             throw new NotImplementedException();
         }
 
-        public Reclutador Get(string id)
+        public Reclutador Get(string correo)
         {
             try
             {
                 Reclutador reclutador;
                 using (UnidadDeTrabajoU<Reclutador> unidad = new UnidadDeTrabajoU<Reclutador>(context))
                 {
-                    reclutador = unidad.genericDAL.Get(id);
+                    reclutador = unidad.genericDAL.Get(correo);
                 }
                 return reclutador;
             }

@@ -149,12 +149,12 @@ namespace FrontEnd.Controllers
             List<Usuario> resultado = usuarioDAL.Login(usuario.CorreoUsuario, usuario.Contrasena);
 
              if (resultado.Count() >= 1)
-            {
+             {
 
-                var nombre = resultado[0].CorreoUsuario;
+                var correo = resultado[0].CorreoUsuario;
                 var rol = Convert.ToString(resultado[0].IdRol);
-                HttpContext.Session.SetString("nombre", nombre);
-                HttpContext.Session.SetString("rol", rol);
+                HttpContext.Session.SetString("CORREO", correo);
+                HttpContext.Session.SetString("ROL", rol.ToString());
 
                 if (resultado[0].IdRol == 2)
                 {
@@ -165,17 +165,11 @@ namespace FrontEnd.Controllers
                     return RedirectToAction("Index", "Empleo");
 
                 }
-
-
-
-
-
-                
-            }
-            else
-            {
+             }
+             else
+             {
                 return View();
-            }
+             }
 
         }
 
