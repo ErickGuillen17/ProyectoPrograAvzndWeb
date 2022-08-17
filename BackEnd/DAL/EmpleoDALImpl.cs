@@ -316,6 +316,58 @@ namespace BackEnd.DAL
             }
         }
 
+        public List<Empleo> EmpleosPublicados(string correo)
+        {
+            List<Empleo> empleos = new List<Empleo>();
+
+            try
+            {
+                List<SP_Empleos_Publicados_Result> result;
+
+                string sql = "[dbo].[SP_Empleos_Publicados] @pCorreo";
+
+                var param = new SqlParameter[] {
+                        new SqlParameter() {
+                            ParameterName = "@pCorreo",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 150,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = correo
+                        }
+                };
+
+                result = context.SP_Empleos_Publicados_Result.FromSqlRaw(sql, param)
+                    .ToListAsync()
+                    .Result;
+
+                foreach (var item in result)
+                {
+                    empleos.Add(new Empleo
+                    {
+                        IdEmpleo = item.ID_EMPLEO,
+                        IdCategoria = item.ID_CATEGORIA,
+                        CorreoReclutador = item.CORREO_RECLUTADOR,
+                        EmpleoNombre = item.EMPLEO_NOMBRE,
+                        ExpMinima = item.EXP_MINIMA,
+                        GradoEstudio = item.GRADO_ESTUDIO,
+                        Compania = item.COMPANIA,
+                        EstadoPuesto = item.ESTADO_PUESTO,
+                        Descripcion = item.DESCRIPCION,
+                        Requisitos = item.REQUISITOS,
+                        CategoriaDescripcion = item.categoria_descripcion
+                    });
+                }
+
+
+                return empleos;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
 
 
     }

@@ -123,6 +123,21 @@ namespace FrontEnd.Controllers
 
             return View("Index", empleos);
         }
+
+        public IActionResult EmpleosPublicados()
+        {            
+            EmpleoDALImpl empleoDAL = new EmpleoDALImpl();
+            List<Empleo> lista = empleoDAL.EmpleosPublicados(HttpContext.Session.GetString("CORREO")).ToList();
+
+            List<EmpleoViewModel> empleos = new List<EmpleoViewModel>();
+
+            foreach (Empleo item in lista)
+            {
+                empleos.Add(Convertir(item));
+            }
+
+            return View("Index", empleos);
+        }
     }
 
 
