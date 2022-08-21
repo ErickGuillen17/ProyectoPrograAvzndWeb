@@ -1,4 +1,4 @@
-﻿@model BackEnd.Entities.usuarioCandidato
+﻿@model FrontEnd.Models.usuarioCandidatoViewModel
 
 @{
     Layout = "";
@@ -81,8 +81,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="AreaInteres" class="control-label"></label>
-                <input type="text" asp-for="AreaInteres" class="form-control form-control-lg" placeholder="Área de interés">
-            </div>        
+          @Html.DropDownListFor(model => model.AreaInteres, new SelectList(Model.Categorias,"IdCategoria","CategoriaDescripcion","--Select--"))            </div>        
             <div class="form-group">
                 <input type="submit" value="Crear cuenta" class="btn btn-primary" />
             </div>
