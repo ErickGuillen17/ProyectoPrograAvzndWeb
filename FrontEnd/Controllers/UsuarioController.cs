@@ -162,7 +162,7 @@ namespace FrontEnd.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Empleo");
+                    return RedirectToAction("EmpleosPublicados", "Empleo");
 
                 }
              }
