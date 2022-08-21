@@ -21,7 +21,7 @@ namespace FrontEnd.Models
         public long IdCategoria { get; set; }
 
         [Required(ErrorMessage = "Debe indicar la experiencia mínima")]
-        [Display(Name = "Experiencia requerida")]
+        [Display(Name = "Años de experiencia requeridos")]
         public int ExpMinima { get; set; }
 
         [Required(ErrorMessage = "Debe indicar el grado de estudio")]
