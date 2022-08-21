@@ -1,13 +1,16 @@
 ﻿@model IEnumerable<FrontEnd.Models.EmpleoViewModel>
 @using Microsoft.AspNetCore.Http;
 @inject IHttpContextAccessor HttpContextAccessor
+ @{
+    string rol = HttpContextAccessor.HttpContext.Session.GetString("ROL");
+}
 
 
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             @{
-                if (HttpContextAccessor.HttpContext.Session.GetString("ROL").Equals("1"))
+                if (rol.Equals("1"))
                 {
                     <h4 class="card-title">Empleos publicados</h4>
                 }else{
@@ -50,14 +53,22 @@
                                     @Html.DisplayFor(modelItem => item.CategoriaDescripcion)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.ExpMinima)
+                                    @Html.DisplayFor(modelItem => item.ExpMinima) años
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.GradoEstudio)
                                 </td>
-                                <td>                                    
-                                    <input type="button" value="Ver más" class="btn btn-primary" 
-                                           onclick="location.href='@Url.Action("Details", "Empleo", new { id = item.IdEmpleo })'">
+                                <td>      
+                                    @if (rol.Equals("1"))
+                                    {
+                                        <input type="button" value="Editar" class="btn btn-primary" 
+                                               onclick="location.href='@Url.Action("Edit", "Empleo", new { id = item.IdEmpleo })'">
+                                    } else
+                                    {
+                                        <input type="button" value="Ver más" class="btn btn-primary" 
+                                               onclick="location.href='@Url.Action("Details", "Empleo", new { id = item.IdEmpleo })'">                                        
+                                    }
+
                                 </td>
                             </tr>
                         }

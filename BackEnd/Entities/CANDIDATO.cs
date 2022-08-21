@@ -31,6 +31,8 @@ namespace BackEnd.Entities
         [EmailAddress]
         public string CorreoUsuario { get; set; } = null!;
 
+        public string CategoriaDescripcion { get; set; } = null!;
+
         public virtual Categoria AreaInteresNavigation { get; set; } = null!;
         public virtual Usuario CorreoUsuarioNavigation { get; set; } = null!;
         public virtual ICollection<Solicitud> Solicitud { get; set; }

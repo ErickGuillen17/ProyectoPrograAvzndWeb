@@ -1,4 +1,6 @@
 ﻿using BackEnd.Entities;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -119,6 +121,95 @@ namespace BackEnd.DAL
             }
 
             return result;
+        }
+
+        public List<Candidato> LlenarCandidatos()
+        {
+            List<Candidato> candidatos = new List<Candidato>();
+
+            try
+            {
+                List<SP_Llenar_Candidatos_Result> result;
+
+                string sql = "[dbo].[SP_Llenar_Candidatos]";
+
+
+                result = context.SP_Llenar_Candidatos_Result.FromSqlRaw(sql)
+                    .ToListAsync()
+                    .Result;
+
+                foreach (var item in result)
+                {
+                    candidatos.Add(new Candidato
+                    {
+                        NombreCandidato = item.NOMBRE_CANDIDATO,
+                        ApellidoCandidato = item.APELLIDO_CANDIDATO,
+                        ExpCandidato = item.EXP_CANDIDATO,
+                        GradoEstudio = item.GRADO_ESTUDIO,
+                        TelefonoCandidato = item.TELEFONO_CANDIDATO,
+                        AreaInteres = item.AREA_INTERES,
+                        CorreoUsuario = item.CORREO_USUARIO,
+                        CategoriaDescripcion = item.categoria_descripcion
+                    });
+                }
+
+
+                return candidatos;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        public List<Candidato> consultarCandidato(string correo)
+        {
+            List<Candidato> candidatos = new List<Candidato>();
+
+            try
+            {
+                List<SP_Consultar_Candidato_Result> result;
+
+                string sql = "[dbo].[SP_Consultar_Candidato] @pCorreo";
+
+                var param = new SqlParameter[] {
+                        new SqlParameter() {
+                            ParameterName = "@pCorreo",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 150,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = correo
+                        }
+                };
+
+                result = context.SP_Consultar_Candidato_Result.FromSqlRaw(sql, param)
+                    .ToListAsync()
+                    .Result;
+
+                foreach (var item in result)
+                {
+                    candidatos.Add(new Candidato
+                    {
+                        NombreCandidato = item.NOMBRE_CANDIDATO,
+                        ApellidoCandidato = item.APELLIDO_CANDIDATO,
+                        ExpCandidato = item.EXP_CANDIDATO,
+                        GradoEstudio = item.GRADO_ESTUDIO,
+                        TelefonoCandidato = item.TELEFONO_CANDIDATO,
+                        AreaInteres = item.AREA_INTERES,
+                        CorreoUsuario = item.CORREO_USUARIO,
+                        CategoriaDescripcion = item.categoria_descripcion
+                    });
+                }
+
+
+                return candidatos;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
         }
     }
 }

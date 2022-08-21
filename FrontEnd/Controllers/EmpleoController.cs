@@ -60,12 +60,12 @@ namespace FrontEnd.Controllers
 
             empleo.CorreoReclutador = HttpContext.Session.GetString("CORREO");
             empleo.Compania = reclutador.Get(empleo.CorreoReclutador).Compania;
-            
+            empleo.EstadoPuesto = "Activo";
 
             empleoDAL = new EmpleoDALImpl();
             empleoDAL.Add(empleo);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("EmpleoPublicados");
         }
 
         [HttpPost]
@@ -79,7 +79,7 @@ namespace FrontEnd.Controllers
             HttpResponseMessage response = serviceObj.PostResponse("api/solicitud", solicitud);
             response.EnsureSuccessStatusCode();
 
-            return RedirectToAction("listaSolicitudesAPI","Solicitud");
+            return RedirectToAction("misSolicitudes","Solicitud");
           
         }
 
@@ -93,9 +93,9 @@ namespace FrontEnd.Controllers
 
         public IActionResult Edit(int id)
         {
-            empleoDAL = new EmpleoDALImpl();
-            Empleo Empleo = empleoDAL.Get(id);
-            return View(Empleo);
+            EmpleoDALImpl empleoDAL = new EmpleoDALImpl();
+            List<Empleo> Empleo = empleoDAL.consultarEmpleo(id);
+            return View(Convertir(Empleo[0]));
         }
         [HttpPost]
         public IActionResult Edit(Empleo Empleo)
@@ -103,7 +103,7 @@ namespace FrontEnd.Controllers
             empleoDAL = new EmpleoDALImpl();
 
             empleoDAL.Update(Empleo);
-            return RedirectToAction("Index");
+            return RedirectToAction("EmpleoPublicados");
         }
 
         public IActionResult Delete(int id)
@@ -123,13 +123,12 @@ namespace FrontEnd.Controllers
 
         public IActionResult EmpleoInteligente()
         {
-            ICandidatoDAL candidato = new CandidatoDALImpl();
+            CandidatoDALImpl candidato = new CandidatoDALImpl();
 
-            Candidato result = candidato.Get(HttpContext.Session.GetString("CORREO"));
-
-            List<Empleo> lista;
+            List<Candidato> result = candidato.consultarCandidato(HttpContext.Session.GetString("CORREO"));
+            
             EmpleoDALImpl empleoDAL = new EmpleoDALImpl();
-            lista = empleoDAL.EmpleoInteligente(result.AreaInteres,result.ExpCandidato,result.GradoEstudio).ToList();
+            List<Empleo> lista = empleoDAL.EmpleoInteligente(result[0].AreaInteres,result[0].ExpCandidato,result[0].GradoEstudio).ToList();
 
             List<EmpleoViewModel> empleos = new List<EmpleoViewModel>();
 

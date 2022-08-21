@@ -21,7 +21,7 @@
                 @Html.DisplayNameFor(model => model.GradoEstudio)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AreaInteres)
+                @Html.DisplayNameFor(model => model.CategoriaDescripcion)
             </th>
             <th></th>
         </tr>
@@ -36,17 +36,18 @@
                 @Html.DisplayFor(modelItem => item.ApellidoCandidato)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExpCandidato)
+                @Html.DisplayFor(modelItem => item.ExpCandidato) años
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GradoEstudio)
+                @Html.DisplayFor(modelItem => item.GradoEstudio) 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AreaInteres)
+                @Html.DisplayFor(modelItem => item.CategoriaDescripcion)
             </td>
             <td>
+                @Html.HiddenFor(modelItem=>item.CorreoUsuario)
                 <input type="button" value="Contacto" class="btn btn-primary" 
-                                           onclick="location.href='@Url.Action("Details", "Candidato", new { id = item.CorreoUsuario})'">
+                                           onclick="location.href='@Url.Action("Details", "Candidato", new { correo = item.CorreoUsuario})'">
             </td>
         </tr>
 }

@@ -19,6 +19,8 @@ namespace FrontEnd.Models
         public int TelefonoCandidato { get; set; }
         [Display(Name = "Área de interes")]
         public long AreaInteres { get; set; }
+        [Display(Name = "Categoría/Área")]
+        public string CategoriaDescripcion { get; set; } = null!;
         [Display(Name = "Correo electrónico")]
         [Required(ErrorMessage = "Debe ingresar un correo electrónico válido")]
         [EmailAddress]

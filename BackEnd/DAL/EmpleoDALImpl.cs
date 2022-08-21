@@ -23,18 +23,81 @@ namespace BackEnd.DAL
 
         public bool Add(Empleo entity)
         {
+
             try
             {
-                //sumar o calcular 
+                string sql = "[dbo].[SP_Insertar_Empleo] @pNombreEmpleo,@pRequisitos,@pDescripcionGeneral,@pCompania,@pIdCategoria,@pCorreo,@pEstado,@pExperienciaMinima,@pGradoEstudio";
 
-                using (UnidadDeTrabajo<Empleo> unidad = new UnidadDeTrabajo<Empleo>(context))
-                {
-                    unidad.genericDAL.Add(entity);
-                    return unidad.Complete();
-                }
+                var param = new SqlParameter[] {
+                        new SqlParameter() {
+                            ParameterName = "@pNombreEmpleo",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 100,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.EmpleoNombre
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pRequisitos",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 1000,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.Requisitos
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pDescripcionGeneral",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 1000,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.Descripcion
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pCompania",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 30,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.Compania
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pIdCategoria",
+                            SqlDbType =  System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.IdCategoria
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pCorreo",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 150,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.CorreoReclutador
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pEstado",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 20,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.EstadoPuesto
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pExperienciaMinima",
+                            SqlDbType =  System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.ExpMinima
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pGradoEstudio",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 50,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.GradoEstudio
+                        }
+                };
+                
+                context.Database.ExecuteSqlRaw(sql, param);
+                context.SaveChanges();
 
+                return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 return false;

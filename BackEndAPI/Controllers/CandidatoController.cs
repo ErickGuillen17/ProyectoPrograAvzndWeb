@@ -30,12 +30,13 @@ namespace BackEndAPI.Controllers
                 GradoEstudio = candidato.GradoEstudio,
                 TelefonoCandidato = candidato.TelefonoCandidato,
                 AreaInteres = candidato.AreaInteres,
-                CorreoUsuario = candidato.CorreoUsuario
+                CorreoUsuario = candidato.CorreoUsuario,
+                CategoriaDescripcion = candidato.CategoriaDescripcion
             };
 
         }
 
-        Candidato    Convertir(CandidatoModel candidato)
+        Candidato Convertir(CandidatoModel candidato)
         {
 
             return new Candidato
@@ -46,7 +47,8 @@ namespace BackEndAPI.Controllers
                 GradoEstudio = candidato.GradoEstudio,
                 TelefonoCandidato = candidato.TelefonoCandidato,
                 AreaInteres = candidato.AreaInteres,
-                CorreoUsuario = candidato.CorreoUsuario
+                CorreoUsuario = candidato.CorreoUsuario,
+                CategoriaDescripcion = candidato.CategoriaDescripcion
             };
 
         }
@@ -57,8 +59,11 @@ namespace BackEndAPI.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            List<Candidato> candidatos = candidatoDAL.GetAll().ToList();
+            CandidatoDALImpl candidatoDAL = new CandidatoDALImpl();
+
+            List<Candidato> candidatos = candidatoDAL.LlenarCandidatos().ToList();
             List<CandidatoModel> result = new List<CandidatoModel>();
+
             foreach (Candidato candidato in candidatos)
             {
                 result.Add(Convertir(candidato));

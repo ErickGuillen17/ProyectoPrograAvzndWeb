@@ -24,6 +24,7 @@ namespace FrontEnd.Controllers
                 TelefonoCandidato = candidato.TelefonoCandidato,
                 AreaInteres = candidato.AreaInteres,
                 CorreoUsuario = candidato.CorreoUsuario,
+                CategoriaDescripcion = candidato.CategoriaDescripcion
             };
         }
         public ActionResult listaCandidatosAPI()
@@ -53,16 +54,11 @@ namespace FrontEnd.Controllers
         }
 
         // GET: CandidatoController/Details/5
-        public IActionResult Details(string id)
+        public IActionResult Details(string correo)
         {
-            candidatoDAL = new CandidatoDALImpl();
-            
-            Candidato item = candidatoDAL.Get(id);
-
-
-
-            return View(Convertir(item));
-
+            CandidatoDALImpl candidatoDAL = new CandidatoDALImpl();
+            List<Candidato> candidato = candidatoDAL.consultarCandidato(correo);
+            return View(Convertir(candidato[0]));
         }
 
         // GET: CandidatoController/Create

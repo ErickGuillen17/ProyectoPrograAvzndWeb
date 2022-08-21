@@ -1,4 +1,7 @@
-﻿using FrontEnd.Helpers;
+﻿using BackEnd.DAL;
+using BackEnd.Entities;
+using FrontEnd.Helpers;
+using FrontEnd.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -7,24 +10,63 @@ namespace FrontEnd.Controllers
 {
     public class SolicitudController : Controller
     {
-        // GET: SolicitudController
-        public ActionResult listaSolicitudesAPI()
-        {
-            try
-            {
-                ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.GetResponse("api/solicitud/ConsultarSolicitudes/" + HttpContext.Session.GetString("CORREO").ToString());
-                response.EnsureSuccessStatusCode();
-                var content = response.Content.ReadAsStringAsync().Result;
-                List<Models.SolicitudViewModel> solicitudes = JsonConvert.DeserializeObject<List<Models.SolicitudViewModel>>(content);
+        ISolicitudDAL solicitudDAL;
 
-                ViewBag.Title = "All Categories";
-                return View(solicitudes);
-            }
-            catch (Exception)
+        private SolicitudViewModel Convertir(Solicitud solicitud)
+        {
+
+            return new SolicitudViewModel
             {
-                throw;
+                IdSolicitud = solicitud.IdSolicitud,
+                IdEmpleo = solicitud.IdEmpleo,
+                CorreoCandidato = solicitud.CorreoCandidato,
+                FechaSolicitud = solicitud.FechaSolicitud
+            };
+
+        }
+
+        // GET: SolicitudController
+        //public ActionResult listaSolicitudesAPI()
+        //{
+        //    try
+        //    {
+        //        ServiceRepository serviceObj = new ServiceRepository();
+        //        HttpResponseMessage response = serviceObj.GetResponse("api/solicitud/ConsultarSolicitudes/" + HttpContext.Session.GetString("CORREO").ToString());
+        //        response.EnsureSuccessStatusCode();
+        //        var content = response.Content.ReadAsStringAsync().Result;
+        //        List<Models.SolicitudViewModel> solicitudes = JsonConvert.DeserializeObject<List<Models.SolicitudViewModel>>(content);
+
+        //        ViewBag.Title = "All Categories";
+        //        return View(solicitudes);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        // GET: SolicitudController
+        public ActionResult misSolicitudes()
+        {
+
+            SolicitudDALImpl solicitudDAL = new SolicitudDALImpl();
+            List<Solicitud> resultSolicitudes = solicitudDAL.consultarSolicitudes(HttpContext.Session.GetString("CORREO")).ToList();            
+            
+            EmpleoDALImpl empleoDAL = new EmpleoDALImpl();
+            
+
+            List<SolicitudViewModel> solicitudes = new List<SolicitudViewModel>();
+
+            foreach (Solicitud item in resultSolicitudes)
+            {
+                solicitudes.Add(Convertir(item));
+                List<Empleo> empleo = empleoDAL.consultarEmpleo(item.IdEmpleo).ToList();
+                solicitudes[solicitudes.Count - 1].EmpleoNombre = empleo[0].EmpleoNombre;
+                solicitudes[solicitudes.Count - 1].EstadoPuesto = empleo[0].EstadoPuesto;
             }
+
+            return View("Index", solicitudes);
+
         }
 
         // GET: SolicitudController/Details/5
@@ -50,7 +92,7 @@ namespace FrontEnd.Controllers
                 ServiceRepository serviceObj = new ServiceRepository();
                 HttpResponseMessage response = serviceObj.PostResponse("api/solicitud", solicitud);
                 response.EnsureSuccessStatusCode();
-                return RedirectToAction("listaSolicitudesAPI");
+                return RedirectToAction("misSolicitudes");
             }
             catch (HttpRequestException
           )
