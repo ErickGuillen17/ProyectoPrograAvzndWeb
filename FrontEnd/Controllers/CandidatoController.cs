@@ -1,6 +1,7 @@
 ﻿using BackEnd.DAL;
 using BackEnd.Entities;
 using FrontEnd.Helpers;
+using FrontEnd.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -11,6 +12,20 @@ namespace FrontEnd.Controllers
     {
         ICandidatoDAL candidatoDAL;
         // GET: CandidatoController
+
+        private CandidatoViewModel Convertir(Candidato candidato)
+        {
+            return new CandidatoViewModel
+            {
+                NombreCandidato = candidato.NombreCandidato,
+                ApellidoCandidato = candidato.ApellidoCandidato,
+                ExpCandidato = candidato.ExpCandidato,
+                GradoEstudio = candidato.GradoEstudio,
+                TelefonoCandidato = candidato.TelefonoCandidato,
+                AreaInteres = candidato.AreaInteres,
+                CorreoUsuario = candidato.CorreoUsuario,
+            };
+        }
         public ActionResult listaCandidatosAPI()
         {
             try
@@ -38,9 +53,16 @@ namespace FrontEnd.Controllers
         }
 
         // GET: CandidatoController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(string id)
         {
-            return View();
+            candidatoDAL = new CandidatoDALImpl();
+            
+            Candidato item = candidatoDAL.Get(id);
+
+
+
+            return View(Convertir(item));
+
         }
 
         // GET: CandidatoController/Create

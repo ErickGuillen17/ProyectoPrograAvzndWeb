@@ -62,9 +62,8 @@
                 @Html.DisplayFor(modelItem => item.CorreoUsuario)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <input type="button" value="Ver más" class="btn btn-primary" 
+                                           onclick="location.href='@Url.Action("Details", "Candidato", new { id = item.CorreoUsuario})'">
             </td>
         </tr>
 }
