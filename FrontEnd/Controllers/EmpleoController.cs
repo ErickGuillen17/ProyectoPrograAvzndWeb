@@ -10,7 +10,7 @@ namespace FrontEnd.Controllers
     public class EmpleoController : Controller
     {
         IEmpleoDAL empleoDAL;
-
+        ICategoriaDAL categoriaDAL;
         private EmpleoViewModel Convertir(Empleo empleo)
         {
             return new EmpleoViewModel
@@ -48,13 +48,21 @@ namespace FrontEnd.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            ViewBag.Grado = new List<string>() { "Bachillerato", "Licenciatura", "Maestria", "Tecnico medio" };
+
+            EmpleoViewModel empleo = new EmpleoViewModel();
+            categoriaDAL = new CategoriaDALImpl();
+            empleo.Categorias = categoriaDAL.GetAll();
+
+            return View(empleo);
         }
 
 
         [HttpPost]
         public IActionResult Create(Empleo empleo)
         {
+            ViewBag.Grado = new List<string>() { "Bachillerato", "Licenciatura", "Maestria", "Tecnico medio" };
+
             IReclutadorDAL reclutador = new ReclutadorDALImpl();
 
 
@@ -65,7 +73,7 @@ namespace FrontEnd.Controllers
             empleoDAL = new EmpleoDALImpl();
             empleoDAL.Add(empleo);
 
-            return RedirectToAction("EmpleoPublicados");
+            return RedirectToAction("EmpleosPublicados");
         }
 
         [HttpPost]
@@ -103,7 +111,7 @@ namespace FrontEnd.Controllers
             empleoDAL = new EmpleoDALImpl();
 
             empleoDAL.Update(Empleo);
-            return RedirectToAction("EmpleoPublicados");
+            return RedirectToAction("EmpleosPublicados");
         }
 
         public IActionResult Delete(int id)

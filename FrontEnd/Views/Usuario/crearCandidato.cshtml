@@ -79,7 +79,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="GradoEstudio" class="control-label"></label>
-                <input type="text" asp-for="GradoEstudio" class="form-control form-control-lg" placeholder="Grado de estudio">
+                    <select asp-for="GradoEstudio" class="form-control" asp-items="new SelectList(ViewBag.Grado)"></select>
             </div>
             <div class="form-group">
                 <label asp-for="AreaInteres" class="control-label"></label>

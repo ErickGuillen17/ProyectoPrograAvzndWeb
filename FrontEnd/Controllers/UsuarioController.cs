@@ -78,6 +78,8 @@ namespace FrontEnd.Controllers
 
         public IActionResult crearCandidato()
         {
+            ViewBag.Grado = new List<string>() { "Bachillerato", "Licenciatura", "Maestria", "Tecnico medio" };
+
             usuarioCandidatoViewModel candidato = new usuarioCandidatoViewModel();
             categoriaDAL = new CategoriaDALImpl();
             candidato.Categorias = categoriaDAL.GetAll();
@@ -88,6 +90,8 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public IActionResult crearCandidato(usuarioCandidato candidato)
         {
+            ViewBag.Grado = new List<string>() { "Bachillerato", "Licenciatura", "Maestria", "Tecnico medio" };
+
             if (candidato.contrasena.Equals(candidato.confirmacion))
             {
                 usuarioDAL = new UsuarioDALImpl();
@@ -100,7 +104,7 @@ namespace FrontEnd.Controllers
                 candidatoDAL.Add(candidato);
                 HttpContext.Session.SetString("ROL", usuario.IdRol.ToString());
                 HttpContext.Session.SetString("CORREO", usuario.CorreoUsuario);
-                return RedirectToAction("Index", "Usuario");
+                return RedirectToAction("Index", "Home");
             }
             else
             {

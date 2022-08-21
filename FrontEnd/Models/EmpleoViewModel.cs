@@ -53,6 +53,8 @@ namespace FrontEnd.Models
         [Display(Name = "Categoría/Área")]
         public string CategoriaDescripcion { get; set; } = null!;
 
+        public IEnumerable<Categoria> Categorias { get; set; }
+
         //public virtual Reclutador CorreoReclutadorNavigation { get; set; } = null!;
         //public virtual Categoria IdCategoriaNavigation { get; set; } = null!;
         //public virtual ICollection<Solicitud> Solicitud { get; set; }
