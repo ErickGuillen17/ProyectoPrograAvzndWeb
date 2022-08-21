@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FrontEnd.Models
 {
-    public class EmpleoViewModel
+    public class EmpleoSolicitudViewModel
     {
         //public Empleo()
         //{
@@ -52,6 +52,10 @@ namespace FrontEnd.Models
 
         [Display(Name = "Categoría/Área")]
         public string CategoriaDescripcion { get; set; } = null!;
+        public long IdSolicitud { get; set; }
+       
+        public string CorreoCandidato { get; set; } = null!;
+        public DateTime FechaSolicitud { get; set; }
 
         //public virtual Reclutador CorreoReclutadorNavigation { get; set; } = null!;
         //public virtual Categoria IdCategoriaNavigation { get; set; } = null!;

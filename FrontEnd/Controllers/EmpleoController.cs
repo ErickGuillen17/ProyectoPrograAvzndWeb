@@ -1,5 +1,6 @@
 ﻿using BackEnd.DAL;
 using BackEnd.Entities;
+using FrontEnd.Helpers;
 using FrontEnd.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -66,6 +67,22 @@ namespace FrontEnd.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult CrearSolicitud(EmpleoViewModel empleo)
+        {
+            BackEndAPI.Models.SolicitudModel solicitud = new BackEndAPI.Models.SolicitudModel();
+            solicitud.IdEmpleo = empleo.IdEmpleo;
+            solicitud.CorreoCandidato = HttpContext.Session.GetString("CORREO");
+
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.PostResponse("api/solicitud", solicitud);
+            response.EnsureSuccessStatusCode();
+
+            return RedirectToAction("listaSolicitudesAPI","Solicitud");
+          
+        }
+
 
         public IActionResult Details(long id)
         {

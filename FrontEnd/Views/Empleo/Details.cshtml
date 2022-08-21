@@ -4,8 +4,11 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Información del empleo</h4>
-            <form class="forms-sample" asp-action="Create">
+            <form class="forms-sample" asp-action="CrearSolicitud">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                @Html.HiddenFor(Model=>Model.IdEmpleo)
+                
                 <div class="form-group">
                     <label asp-for="EmpleoNombre" class="control-label"></label>
                     <input asp-for="EmpleoNombre" type="text" class="form-control" readonly />

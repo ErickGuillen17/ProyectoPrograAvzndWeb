@@ -1,7 +1,7 @@
 ﻿ @using Microsoft.AspNetCore.Http;
  @inject IHttpContextAccessor HttpContextAccessor
  @{
-    string rol = HttpContextAccessor.HttpContext.Session.GetString("ROL");
+    //string rol = HttpContextAccessor.HttpContext.Session.GetString("ROL");
 }
 
 <!DOCTYPE html>
@@ -461,7 +461,7 @@
             </a>
             <div class="collapse" id="solicitudes">
                 <ul class="nav flex-column sub-menu">
-                @if (rol.Equals("1"))
+                @if (HttpContextAccessor.HttpContext.Session.GetString("ROL").Equals("1"))
                 {
                     <li class="nav-item"> 
                         <a class="nav-link" asp-area="" asp-controller="Reclutador" asp-action="listaReclutadores">Solicitudes recibidas</a>
@@ -470,14 +470,14 @@
                 else
                 {
                     <li class="nav-item"> 
-                        <a class="nav-link" asp-area="" asp-controller="Reclutador" asp-action="listaReclutadores">Solicitudes enviadas</a>
+                        <a class="nav-link" asp-area="" asp-controller="Solicitud" asp-action="listaSolicitudesAPI">Solicitudes enviadas</a>
                     </li>   
                 }                                              
                 </ul>
             </div>
             </li>                                     
             
-        @if (rol.Equals("1"))
+        @if (HttpContextAccessor.HttpContext.Session.GetString("ROL").Equals("1"))
         {
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#candidatos" aria-expanded="false" aria-controls="candidatos">
@@ -488,7 +488,7 @@
                 <div class="collapse" id="candidatos">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> 
-                            <a class="nav-link" asp-area="" asp-controller="Candidato" asp-action="listaCandidatos">Lista de Candidatos</a>
+                            <a class="nav-link" asp-area="" asp-controller="Candidato" asp-action="listaCandidatosAPI">Lista de Candidatos</a>
                         </li>               
                     </ul>
                 </div>
@@ -503,7 +503,7 @@
         <div class="collapse" id="empleos">
             <ul class="nav flex-column sub-menu">
 
-        @if (rol.Equals("2"))
+        @if (HttpContextAccessor.HttpContext.Session.GetString("ROL").Equals("2"))
         {
             <li class="nav-item"> 
                 <a class="nav-link" asp-area="" asp-controller="Empleo" asp-action="Index">Empleos disponibles</a>

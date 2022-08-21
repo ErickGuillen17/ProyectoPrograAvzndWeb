@@ -1,0 +1,44 @@
+﻿@model IEnumerable<FrontEnd.Models.SolicitudViewModel>
+
+@{
+    ViewData["Title"] = "listaSolicitudesAPI";
+}
+
+<h1>Solicitudes  aplicadas</h1>
+
+<table class="table">
+    <thead>
+        <tr>    
+            <th>
+                @Html.DisplayNameFor(model => model.IdEmpleo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorreoCandidato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaSolicitud)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEmpleo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorreoCandidato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaSolicitud)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
