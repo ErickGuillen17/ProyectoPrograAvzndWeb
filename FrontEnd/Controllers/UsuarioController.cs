@@ -1,5 +1,6 @@
 ﻿using BackEnd.DAL;
 using BackEnd.Entities;
+using FrontEnd.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,8 @@ namespace FrontEnd.Controllers
         IUsuarioDAL usuarioDAL;
         IusuarioReclutadorDAL reclutadorDAL;
         IusuarioCandidatoDAL candidatoDAL;
+        ICategoriaDAL categoriaDAL;
+
 
         public int Session { get; private set; }
 
@@ -75,7 +78,11 @@ namespace FrontEnd.Controllers
 
         public IActionResult crearCandidato()
         {
-            return View();
+            usuarioCandidatoViewModel candidato = new usuarioCandidatoViewModel();
+            categoriaDAL = new CategoriaDALImpl();
+            candidato.Categorias = categoriaDAL.GetAll();
+
+            return View(candidato);
         }
 
         [HttpPost]
@@ -91,6 +98,8 @@ namespace FrontEnd.Controllers
                 usuario.IdRol = 2;
                 usuarioDAL.Add(usuario);
                 candidatoDAL.Add(candidato);
+                HttpContext.Session.SetString("ROL", usuario.IdRol.ToString());
+                HttpContext.Session.SetString("CORREO", usuario.CorreoUsuario);
                 return RedirectToAction("Index", "Usuario");
             }
             else
