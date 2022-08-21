@@ -1,60 +1,51 @@
 ﻿@model FrontEnd.Models.CandidatoViewModel
 
-@{
-    ViewData["Title"] = "Details";
-}
+<div class="col-6 grid-margin stretch-card" style="margin-left: auto;margin-right: auto;">
 
-<h1>Details</h1>
-
-<div>
-    <h4>CandidatoViewModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreCandidato)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreCandidato)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ApellidoCandidato)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ApellidoCandidato)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ExpCandidato)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ExpCandidato)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GradoEstudio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GradoEstudio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TelefonoCandidato)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TelefonoCandidato)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AreaInteres)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AreaInteres)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CorreoUsuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CorreoUsuario)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Información del candidato</h4>
+            <form class="forms-sample" asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="NombreCandidato" class="control-label"></label>
+                    <input asp-for="NombreCandidato" class="form-control" readonly />
+                    <span asp-validation-for="NombreCandidato" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ApellidoCandidato" class="control-label"></label>
+                    <input asp-for="ApellidoCandidato" class="form-control" readonly> </>
+                    <span asp-validation-for="ApellidoCandidato" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ExpCandidato" class="control-label"></label>
+                    <input asp-for="ExpCandidato" type="text" class="form-control"  readonly> </>
+                    <span asp-validation-for="ExpCandidato" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="GradoEstudio" class="control-label"></label>
+                    <input asp-for="GradoEstudio" class="form-control" readonly/>
+                    <span asp-validation-for="GradoEstudio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TelefonoCandidato" class="control-label"></label>
+                    <input asp-for="TelefonoCandidato" class="form-control" readonly/>
+                    <span asp-validation-for="TelefonoCandidato" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AreaInteres" class="control-label"></label>
+                    <input asp-for="AreaInteres" class="form-control" readonly/>
+                    <span asp-validation-for="AreaInteres" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CorreoUsuario" class="control-label"></label>
+                    <input asp-for="CorreoUsuario" class="form-control" readonly/>
+                    <span asp-validation-for="CorreoUsuario" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Aplicar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
