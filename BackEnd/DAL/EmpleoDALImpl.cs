@@ -315,6 +315,51 @@ namespace BackEnd.DAL
             }
         }
 
+        public bool EmpleoAplicado(string correo, long idEmpleo)
+        {
+
+            try
+            {
+                List<SP_Consultar_Empleo_Aplicado_Result> result;
+
+                string sql = "[dbo].[SP_Consultar_Empleo_Aplicado] @pCorreo,@pIdEmpleo";
+
+                var param = new SqlParameter[] {
+                        new SqlParameter() {
+                            ParameterName = "@pCorreo",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 50,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = correo
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pIdEmpleo",
+                            SqlDbType =  System.Data.SqlDbType.BigInt,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = idEmpleo
+                        }
+                };
+
+                result = context.SP_Consultar_Empleo_Aplicado_Result.FromSqlRaw(sql, param)
+                    .ToListAsync()
+                    .Result;
+
+                if (result.Count == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
         public List<Empleo> EmpleoInteligente(long areaInteres, int exp, string gradoEstudio )
         {
             List<Empleo> empleos = new List<Empleo>();

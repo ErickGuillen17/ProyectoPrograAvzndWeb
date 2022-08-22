@@ -1,4 +1,6 @@
 ﻿@model FrontEnd.Models.EmpleoViewModel
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
 
 <div class="col-6 grid-margin stretch-card" style="margin-left: auto;margin-right: auto;">
     <div class="card">
@@ -40,7 +42,12 @@
                     <span asp-validation-for="CategoriaDescripcion" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Aplicar" class="btn btn-primary" />
+                    @if (HttpContextAccessor.HttpContext.Session.GetString("APLICADO").Equals("1"))
+                    {
+                        <input type="submit" value="Aplicar" class="btn btn-primary" disabled />                        
+                    } else {
+                        <input type="submit" value="Aplicar" class="btn btn-primary"/>
+                    }                    
                 </div>
             </form>
         </div>
