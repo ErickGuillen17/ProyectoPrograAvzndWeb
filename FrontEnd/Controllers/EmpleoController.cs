@@ -95,6 +95,16 @@ namespace FrontEnd.Controllers
         public IActionResult Details(long id)
         {
             EmpleoDALImpl empleoDAL = new EmpleoDALImpl();
+
+            if (empleoDAL.EmpleoAplicado(HttpContext.Session.GetString("CORREO"),id))
+            {
+                HttpContext.Session.SetString("APLICADO", "1");
+            }
+            else
+            {
+                HttpContext.Session.SetString("APLICADO", "0");
+            }
+
             List<Empleo> Empleo = empleoDAL.consultarEmpleo(id);
             return View(Convertir(Empleo[0]));
         }
