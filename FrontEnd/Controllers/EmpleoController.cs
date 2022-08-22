@@ -101,9 +101,17 @@ namespace FrontEnd.Controllers
 
         public IActionResult Edit(int id)
         {
+            ViewBag.Grado = new List<string>() { "Noveno Año", "Bachiller Colegial", "Tecnico medio", "Bachiller Universitario", "Licenciado", "Maestria" };
+            ViewBag.Estado = new List<string>() { "Activo","Inactivo" };
+
             EmpleoDALImpl empleoDAL = new EmpleoDALImpl();
-            List<Empleo> Empleo = empleoDAL.consultarEmpleo(id);
-            return View(Convertir(Empleo[0]));
+            
+            List<Empleo> result = empleoDAL.consultarEmpleo(id);
+            EmpleoViewModel empleo = new EmpleoViewModel();
+            empleo=Convertir(result[0]);
+            categoriaDAL = new CategoriaDALImpl();
+            empleo.Categorias = categoriaDAL.GetAll();
+            return View(empleo);
         }
         [HttpPost]
         public IActionResult Edit(Empleo Empleo)

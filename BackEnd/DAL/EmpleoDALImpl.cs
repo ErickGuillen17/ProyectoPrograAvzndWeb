@@ -201,25 +201,91 @@ namespace BackEnd.DAL
 
         public bool Update(Empleo empleo)
         {
-            bool result = false;
-
             try
             {
-                using (UnidadDeTrabajo<Empleo> unidad = new UnidadDeTrabajo<Empleo>(context))
-                {
-                    unidad.genericDAL.Update(empleo);
-                    result = unidad.Complete();
-                }
+                string sql = "[dbo].[SP_Actualizar_Empleo] @pEmpleo,@pCompania,@pRequisitos,@pDescripcion,@pExperiencia,@pEstudios,@pEstado,@pCategoria,@pIdPuesto";
 
+                var param = new SqlParameter[] {
+                        new SqlParameter() {
+                            ParameterName = "@pEmpleo",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 100,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = empleo.EmpleoNombre
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pCompania",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 100,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = empleo.Compania
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pRequisitos",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 500,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = empleo.Requisitos
+
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pDescripcion",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 500,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = empleo.Descripcion
+
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pExperiencia",
+                            SqlDbType =  System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = empleo.ExpMinima
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pEstudios",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 500,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = empleo.GradoEstudio
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pEstado",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 200,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = empleo.EstadoPuesto
+                        },
+
+                        new SqlParameter() {
+                            ParameterName = "@pCategoria",
+                            SqlDbType =  System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = empleo.IdCategoria
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pIdPuesto",
+                            SqlDbType =  System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = empleo.IdEmpleo
+                        }
+                        
+                        
+                        
+                };
+
+                context.Database.ExecuteSqlRaw(sql, param);
+                context.SaveChanges();
+
+                return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 return false;
             }
-
-            return result;
         }
+    
 
         public List<Empleo> LlenarEmpleos()
         {
