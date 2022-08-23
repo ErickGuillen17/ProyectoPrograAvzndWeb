@@ -4,58 +4,52 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Editar</h1>
-
-<h4>Candidato</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="NombreCandidato" class="control-label"></label>
-                <input asp-for="NombreCandidato" class="form-control" />
-                <span asp-validation-for="NombreCandidato" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApellidoCandidato" class="control-label"></label>
-                <input asp-for="ApellidoCandidato" class="form-control" />
-                <span asp-validation-for="ApellidoCandidato" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExpCandidato" class="control-label"></label>
-                <input asp-for="ExpCandidato" class="form-control" />
-                <span asp-validation-for="ExpCandidato" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GradoEstudio" class="control-label"></label>
-                <input asp-for="GradoEstudio" class="form-control" />
-                <span asp-validation-for="GradoEstudio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TelefonoCandidato" class="control-label"></label>
-                <input asp-for="TelefonoCandidato" class="form-control" />
-                <span asp-validation-for="TelefonoCandidato" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AreaInteres" class="control-label"></label>
-                <input asp-for="AreaInteres" class="form-control" />
-                <span asp-validation-for="AreaInteres" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CorreoUsuario" class="control-label"></label>
-                <input asp-for="CorreoUsuario" class="form-control" />
-                <span asp-validation-for="CorreoUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoriaDescripcion" class="control-label"></label>
-                <input asp-for="CategoriaDescripcion" class="form-control" />
-                <span asp-validation-for="CategoriaDescripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="col-6 grid-margin stretch-card" style="margin-left: auto;margin-right: auto;">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Información personal</h4>
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="CorreoUsuario" class="control-label"></label>
+                    <input asp-for="CorreoUsuario" class="form-control" readonly/>
+                    <span asp-validation-for="CorreoUsuario" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NombreCandidato" class="control-label"></label>
+                    <input asp-for="NombreCandidato" class="form-control" />
+                    <span asp-validation-for="NombreCandidato" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ApellidoCandidato" class="control-label"></label>
+                    <input asp-for="ApellidoCandidato" class="form-control" />
+                    <span asp-validation-for="ApellidoCandidato" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ExpCandidato" class="control-label"></label>
+                    <input asp-for="ExpCandidato" class="form-control" />
+                    <span asp-validation-for="ExpCandidato" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TelefonoCandidato" class="control-label"></label>
+                    <input asp-for="TelefonoCandidato" class="form-control" />
+                    <span asp-validation-for="TelefonoCandidato" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="GradoEstudio" class="control-label"></label>
+                    <select class = "js-example-basic-single w-100" asp-for="GradoEstudio" class="form-control" asp-items="new SelectList(ViewBag.Grado)"></select>
+                    <span asp-validation-for="GradoEstudio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AreaInteres" class="control-label"></label>
+                    <input asp-for="AreaInteres" class="form-control" />
+                    <span asp-validation-for="AreaInteres" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                </div>
+            </form>
+       </div>
     </div>
 </div>
 

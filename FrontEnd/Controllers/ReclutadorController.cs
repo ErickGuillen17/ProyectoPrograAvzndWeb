@@ -71,7 +71,7 @@ namespace FrontEnd.Controllers
             reclutadorDAL = new ReclutadorDALImpl();
 
             reclutadorDAL.Update(reclutador);
-            return RedirectToAction("listaReclutadores");
+            return RedirectToAction("EmpleosPublicados", "Empleo");
         }
 
         // GET: ReclutadorController/Delete/5

@@ -83,11 +83,12 @@ namespace FrontEnd.Controllers
         }
 
         // GET: CandidatoController/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string correo)
         {
-            candidatoDAL = new CandidatoDALImpl();
-            Candidato candidato = candidatoDAL.Get(id);
-            return View(candidato);
+            ViewBag.Grado = new List<string>() { "Noveno Año", "Bachiller Colegial", "Técnico Medio", "Bachiller Universitario", "Licenciado", "Maestria" };
+            CandidatoDALImpl candidatoDAL = new CandidatoDALImpl();
+            List<Candidato> candidato = candidatoDAL.consultarCandidato(correo);
+            return View(candidato[0]);
         }
 
         // POST: CandidatoController/Edit/5
@@ -98,7 +99,7 @@ namespace FrontEnd.Controllers
             candidatoDAL = new CandidatoDALImpl();
 
             candidatoDAL.Update(candidato);
-            return RedirectToAction("listaCandidatosAPI");
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: CandidatoController/Delete/5

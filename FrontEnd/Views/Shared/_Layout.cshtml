@@ -1,7 +1,8 @@
 ﻿ @using Microsoft.AspNetCore.Http;
  @inject IHttpContextAccessor HttpContextAccessor
  @{
-    //string rol = HttpContextAccessor.HttpContext.Session.GetString("ROL");
+    string rol = HttpContextAccessor.HttpContext.Session.GetString("ROL");
+    string correo = HttpContextAccessor.HttpContext.Session.GetString("CORREO");
 }
 
 <!DOCTYPE html>
@@ -40,7 +41,7 @@
           </button>
         </div>
         <div>
-            @if (HttpContextAccessor.HttpContext.Session.GetString("ROL").Equals("1"))
+            @if (rol.Equals("1"))
             {
                     <a class="navbar-brand brand-logo" asp-controller="Empleo" asp-action="EmpleosPublicados">
                 <img src="~/images/logo.svg" alt="logo" />
@@ -81,19 +82,10 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
               <a class="dropdown-item py-3">
-                <p class="mb-0 font-weight-medium float-left">Tiene 3 nuevas notificaciones </p>
+                <p class="mb-0 font-weight-medium float-left">Tiene 2 nuevas notificaciones </p>
                 <span class="badge badge-pill badge-primary float-right">Ver todos</span>
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <img src="~/~/images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
-                </div>
-                <div class="preview-item-content flex-grow py-2">
-                  <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
-                  <p class="fw-light small-text mb-0"> Nuevo Candidato </p>
-                </div>
-              </a>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
                   <img src="~/images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
@@ -120,18 +112,19 @@
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
               <div class="dropdown-header text-center">
                 <img class="img-md rounded-circle" src="~/images/faces/face8.jpg" alt="Profile image">
-                <p class="mb-1 mt-3 font-weight-semibold">@HttpContextAccessor.HttpContext.Session.GetString("CORREO")</p>
+                <p class="mb-1 mt-3 font-weight-semibold">@correo</p>
               </div>
               
-              <a class="dropdown-item" onclick="location.href='@Url.Action("Edit", "Usuario", new { id = @HttpContextAccessor.HttpContext.Session.GetString("CORREO") })'"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>Mi Perfil</a>
-              @if (HttpContextAccessor.HttpContext.Session.GetString("ROL").Equals("1"))
+              
+              @if (rol.Equals("1"))
             {
-                <a class="dropdown-item" onclick="location.href='@Url.Action("Edit", "Reclutador", new { id = @HttpContextAccessor.HttpContext.Session.GetString("CORREO") })'"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>Editar mi Información</a>
+                <a class="dropdown-item" onclick="location.href='@Url.Action("Edit", "Reclutador", new { id = correo })'"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>Mi Perfil</a>
                     
             }else{
-                <a class="dropdown-item" onclick="location.href='@Url.Action("Edit", "Candidato", new { id = @HttpContextAccessor.HttpContext.Session.GetString("CORREO") })'"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>Editar mi Usuario</a>    
+                <a class="dropdown-item" onclick="location.href='@Url.Action("Edit", "Candidato", new { correo = correo })'"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>Mi Perfil</a>    
                
             }
+              <a class="dropdown-item" onclick="location.href='@Url.Action("Edit", "Usuario", new { id = correo })'"><i class="dropdown-item-icon mdi mdi-key text-primary me-2"></i>Cambiar contraseña</a>
               <a class="dropdown-item" onclick="location.href='@Url.Action("cerrarSesion", "Usuario")'"><i class="dropdown-item-icon mdi mdi-logout text-primary me-2"></i>Salir</a>
           </div>
           </li>
@@ -325,7 +318,7 @@
             </a>
             <div class="collapse" id="solicitudes">
                 <ul class="nav flex-column sub-menu">
-                @if (HttpContextAccessor.HttpContext.Session.GetString("ROL").Equals("1"))
+                @if (rol.Equals("1"))
                 {
                     <li class="nav-item"> 
                         <a class="nav-link" asp-area="" asp-controller="Solicitud" asp-action="listaSolicitudes">Solicitudes recibidas</a>
@@ -341,7 +334,7 @@
             </div>
             </li>                                     
             
-        @if (HttpContextAccessor.HttpContext.Session.GetString("ROL").Equals("1"))
+        @if (rol.Equals("1"))
         {
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#candidatos" aria-expanded="false" aria-controls="candidatos">
@@ -367,7 +360,7 @@
         <div class="collapse" id="empleos">
             <ul class="nav flex-column sub-menu">
 
-        @if (HttpContextAccessor.HttpContext.Session.GetString("ROL").Equals("2"))
+        @if (rol.Equals("2"))
         {
             <li class="nav-item"> 
                 <a class="nav-link" asp-area="" asp-controller="Empleo" asp-action="Index">Empleos disponibles</a>
@@ -401,7 +394,7 @@
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">WorkNet.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2022. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2022. Todos los derechos reservados.</span>
           </div>
         </footer>
         <!-- partial -->

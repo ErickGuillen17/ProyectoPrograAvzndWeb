@@ -30,7 +30,7 @@ namespace BackEnd.Entities
         [Required(ErrorMessage = "Debe ingresar un correo electrónico válido")]
         [EmailAddress]
         public string CorreoUsuario { get; set; } = null!;
-
+        [Display(Name = "Área de interes")]
         public string CategoriaDescripcion { get; set; } = null!;
 
         public virtual Categoria AreaInteresNavigation { get; set; } = null!;

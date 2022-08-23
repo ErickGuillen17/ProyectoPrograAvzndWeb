@@ -24,13 +24,13 @@
                                 @Html.DisplayNameFor(model => model.EmpleoNombre)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.CorreoCandidato)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.FechaSolicitud)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.EstadoPuesto)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CorreoCandidato)
                             </th>
                         </tr>
                     </thead>
@@ -41,19 +41,19 @@
                             @Html.DisplayFor(modelItem => item.EmpleoNombre)
                         </td>
                         <td>
+                            @Html.DisplayFor(modelItem => item.CorreoCandidato)
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.FechaSolicitud)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.EstadoPuesto)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CorreoCandidato)
-                        </td>
-                        <td>
                         @if (rol.Equals("1"))
                         {
                             <input type="button" value="Contacto"class="btn btn-primary" 
-                                    onclick="location.href='@Url.Action("Details", "Candidato", new { id = item.CorreoCandidato })'">
+                                    onclick="location.href='@Url.Action("Details", "Candidato", new { correo = item.CorreoCandidato })'">
                         } else
                         {
                             <input type="button" value="Ver empleo" class="btn btn-primary" 
