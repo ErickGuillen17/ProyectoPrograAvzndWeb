@@ -48,7 +48,7 @@ namespace FrontEnd.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.Grado = new List<string>() { "Noveno Año", "Bachiller Colegial", "Tecnico medio", "Bachiller Universitario", "Licenciado", "Maestria" };
+            ViewBag.Grado = new List<string>() { "Noveno Año", "Bachiller Colegial", "Técnico Medio", "Bachiller Universitario", "Licenciado", "Maestria" };
 
             EmpleoViewModel empleo = new EmpleoViewModel();
             categoriaDAL = new CategoriaDALImpl();
@@ -61,7 +61,7 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public IActionResult Create(Empleo empleo)
         {
-            ViewBag.Grado = new List<string>() { "Noveno Año", "Bachiller Colegial", "Tecnico medio", "Bachiller Universitario", "Licenciado", "Maestria" };
+            ViewBag.Grado = new List<string>() { "Noveno Año", "Bachiller Colegial", "Técnico Medio", "Bachiller Universitario", "Licenciado", "Maestria" };
 
             IReclutadorDAL reclutador = new ReclutadorDALImpl();
 
@@ -111,7 +111,7 @@ namespace FrontEnd.Controllers
 
         public IActionResult Edit(int id)
         {
-            ViewBag.Grado = new List<string>() { "Noveno Año", "Bachiller Colegial", "Tecnico medio", "Bachiller Universitario", "Licenciado", "Maestria" };
+            ViewBag.Grado = new List<string>() { "Noveno Año", "Bachiller Colegial", "Técnico Medio", "Bachiller Universitario", "Licenciado", "Maestria" };
             ViewBag.Estado = new List<string>() { "Activo","Inactivo" };
 
             EmpleoDALImpl empleoDAL = new EmpleoDALImpl();

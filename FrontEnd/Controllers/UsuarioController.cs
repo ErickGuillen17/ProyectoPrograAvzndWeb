@@ -78,7 +78,7 @@ namespace FrontEnd.Controllers
 
         public IActionResult crearCandidato()
         {
-            ViewBag.Grado = new List<string>() { "Noveno Año", "Bachiller Colegial", "Tecnico medio", "Bachiller Universitario", "Licenciado", "Maestria" };
+            ViewBag.Grado = new List<string>() { "Noveno Año", "Bachiller Colegial", "Técnico Medio", "Bachiller Universitario", "Licenciado", "Maestria" };
 
             usuarioCandidatoViewModel candidato = new usuarioCandidatoViewModel();
             categoriaDAL = new CategoriaDALImpl();
@@ -90,7 +90,7 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public IActionResult crearCandidato(usuarioCandidato candidato)
         {
-            ViewBag.Grado = new List<string>() { "Noveno Año","Bachiller Colegial","Tecnico medio", "Bachiller Universitario", "Licenciado", "Maestria" };
+            ViewBag.Grado = new List<string>() { "Noveno Año", "Bachiller Colegial", "Técnico Medio", "Bachiller Universitario", "Licenciado", "Maestria" };
 
             if (candidato.contrasena.Equals(candidato.confirmacion))
             {
