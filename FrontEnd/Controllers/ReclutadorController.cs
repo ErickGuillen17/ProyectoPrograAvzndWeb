@@ -56,24 +56,22 @@ namespace FrontEnd.Controllers
         }
 
         // GET: ReclutadorController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            reclutadorDAL = new ReclutadorDALImpl();
+            Reclutador reclutador = reclutadorDAL.Get(id);
+            return View(reclutador);
         }
 
         // POST: ReclutadorController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Reclutador reclutador)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            reclutadorDAL = new ReclutadorDALImpl();
+
+            reclutadorDAL.Update(reclutador);
+            return RedirectToAction("listaReclutadores");
         }
 
         // GET: ReclutadorController/Delete/5

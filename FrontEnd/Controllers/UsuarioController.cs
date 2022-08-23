@@ -128,6 +128,8 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public IActionResult Edit(Usuario usuario)
         {
+
+            
             usuarioDAL = new UsuarioDALImpl();
 
             usuarioDAL.Update(usuario);

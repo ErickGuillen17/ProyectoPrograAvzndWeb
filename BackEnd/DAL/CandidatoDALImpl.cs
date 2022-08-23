@@ -38,12 +38,12 @@ namespace BackEnd.DAL
         {
             try
             {
-                Candidato Candidato;
+                Candidato candidato;
                 using (UnidadDeTrabajoU<Candidato> unidad = new UnidadDeTrabajoU<Candidato>(context))
                 {
-                    Candidato = unidad.genericDAL.Get(correo);
+                    candidato = unidad.genericDAL.Get(correo);
                 }
-                return Candidato;
+                return candidato;
             }
             catch (Exception)
             {
@@ -56,12 +56,12 @@ namespace BackEnd.DAL
         {
             try
             {
-                IEnumerable<Candidato> Candidatos;
+                IEnumerable<Candidato> candidatos;
                 using (UnidadDeTrabajo<Candidato> unidad = new UnidadDeTrabajo<Candidato>(context))
                 {
-                    Candidatos = unidad.genericDAL.GetAll();
+                    candidatos = unidad.genericDAL.GetAll();
                 }
-                return Candidatos;
+                return candidatos;
             }
             catch (Exception)
             {

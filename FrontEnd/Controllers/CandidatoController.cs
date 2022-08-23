@@ -83,24 +83,22 @@ namespace FrontEnd.Controllers
         }
 
         // GET: CandidatoController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            candidatoDAL = new CandidatoDALImpl();
+            Candidato candidato = candidatoDAL.Get(id);
+            return View(candidato);
         }
 
         // POST: CandidatoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Candidato candidato)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            candidatoDAL = new CandidatoDALImpl();
+
+            candidatoDAL.Update(candidato);
+            return RedirectToAction("listaCandidatosAPI");
         }
 
         // GET: CandidatoController/Delete/5

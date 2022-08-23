@@ -124,6 +124,14 @@
               </div>
               
               <a class="dropdown-item" onclick="location.href='@Url.Action("Edit", "Usuario", new { id = @HttpContextAccessor.HttpContext.Session.GetString("CORREO") })'"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>Mi Perfil</a>
+              @if (HttpContextAccessor.HttpContext.Session.GetString("ROL").Equals("1"))
+            {
+                <a class="dropdown-item" onclick="location.href='@Url.Action("Edit", "Reclutador", new { id = @HttpContextAccessor.HttpContext.Session.GetString("CORREO") })'"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>Editar mi Información</a>
+                    
+            }else{
+                <a class="dropdown-item" onclick="location.href='@Url.Action("Edit", "Candidato", new { id = @HttpContextAccessor.HttpContext.Session.GetString("CORREO") })'"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>Editar mi Usuario</a>    
+               
+            }
               <a class="dropdown-item" onclick="location.href='@Url.Action("cerrarSesion", "Usuario")'"><i class="dropdown-item-icon mdi mdi-logout text-primary me-2"></i>Salir</a>
           </div>
           </li>
