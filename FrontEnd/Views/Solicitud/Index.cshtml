@@ -30,6 +30,7 @@
                                 @Html.DisplayNameFor(model => model.EstadoPuesto)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.CorreoCandidato)
                             </th>
                         </tr>
                     </thead>
@@ -44,6 +45,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.EstadoPuesto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CorreoCandidato)
                         </td>
                         <td>
                         @if (rol.Equals("1"))
