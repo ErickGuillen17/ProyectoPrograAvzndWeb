@@ -75,7 +75,8 @@
                 <p class="mb-1 mt-3 font-weight-semibold">@HttpContextAccessor.HttpContext.Session.GetString("CORREO")</p>
                 <p class="fw-light text-muted mb-0">@HttpContextAccessor.HttpContext.Session.GetString("CORREO")</p>
               </div>
-              <a class="dropdown-item" onclick="location.href='@Url.Action("cerrarSesion", "Usuario")'"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>Mi Perfil</a>
+              
+              <a class="dropdown-item" onclick="location.href='@Url.Action("Edit", "Usuario", new { id = @HttpContextAccessor.HttpContext.Session.GetString("CORREO") })'"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>Mi Perfil</a>
               <a class="dropdown-item" onclick="location.href='@Url.Action("cerrarSesion", "Usuario")'"><i class="dropdown-item-icon mdi mdi-logout text-primary me-2"></i>Salir</a>
           </div>
           </li>
