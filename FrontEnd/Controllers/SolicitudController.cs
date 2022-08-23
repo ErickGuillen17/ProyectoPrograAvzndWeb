@@ -68,6 +68,28 @@ namespace FrontEnd.Controllers
             return View("Index", solicitudes);
 
         }
+        public ActionResult listaSolicitudes()
+        {
+
+            SolicitudDALImpl solicitudDAL = new SolicitudDALImpl();
+            List<Solicitud> resultSolicitudes = solicitudDAL.consultarSolicitudes(HttpContext.Session.GetString("CORREO")).ToList();
+
+            EmpleoDALImpl empleoDAL = new EmpleoDALImpl();
+
+
+            List<SolicitudViewModel> solicitudes = new List<SolicitudViewModel>();
+
+            foreach (Solicitud item in resultSolicitudes)
+            {
+                solicitudes.Add(Convertir(item));
+                List<Empleo> empleo = empleoDAL.consultarEmpleo(item.IdEmpleo).ToList();
+                solicitudes[solicitudes.Count - 1].EmpleoNombre = empleo[0].EmpleoNombre;
+                solicitudes[solicitudes.Count - 1].EstadoPuesto = empleo[0].EstadoPuesto;
+            }
+
+            return View("Index", solicitudes);
+
+        }
 
         // GET: SolicitudController/Details/5
         public ActionResult Details(int id)
