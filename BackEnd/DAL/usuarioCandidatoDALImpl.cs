@@ -1,4 +1,6 @@
 ﻿using BackEnd.Entities;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,29 +23,67 @@ namespace BackEnd.DAL
         {
             try
             {
+                string sql = "[dbo].[SP_Insertar_Candidato] @pCorreo,@pNombre,@pApellido,@pExp,@pGradoEstudio,@pTelefono,@pAreaInteres";
 
-                using (UnidadDeTrabajoU<Candidato> unidad = new UnidadDeTrabajoU<Candidato>(context))
-                {
-                    Candidato obj = new Candidato();
-                    obj.NombreCandidato = entity.NombreCandidato;
-                    obj.ApellidoCandidato = entity.ApellidoCandidato;
-                    obj.CorreoUsuario = entity.CorreoUsuario;
-                    obj.ExpCandidato = entity.ExpCandidato;
-                    obj.TelefonoCandidato = entity.TelefonoCandidato;
-                    obj.AreaInteres = entity.AreaInteres;
-                    obj.GradoEstudio = entity.GradoEstudio;
-                    
+                var param = new SqlParameter[] {
+                        new SqlParameter() {
+                            ParameterName = "@pCorreo",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 150,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.CorreoUsuario
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pNombre",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 100,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.NombreCandidato
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pApellido",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 100,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.ApellidoCandidato
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pExp",
+                            SqlDbType =  System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.ExpCandidato
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pGradoEstudio",
+                            SqlDbType =  System.Data.SqlDbType.VarChar,
+                            Size = 20,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.GradoEstudio
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pTelefono",
+                            SqlDbType =  System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.TelefonoCandidato
+                        },
+                        new SqlParameter() {
+                            ParameterName = "@pAreaInteres",
+                            SqlDbType =  System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = entity.AreaInteres
+                        }
+                };
 
-                    unidad.genericDAL.Add(obj);
-                    return unidad.Complete();
-                }
+                context.Database.ExecuteSqlRaw(sql, param);
+                context.SaveChanges();
 
+                return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 return false;
-            }
+            }           
         }
 
         public void AddRange(IEnumerable<usuarioCandidato> entities)

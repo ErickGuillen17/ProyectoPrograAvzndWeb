@@ -40,23 +40,17 @@
           </button>
         </div>
         <div>
-                    @if (HttpContextAccessor.HttpContext.Session.GetString("ROL").Equals("1"))
-                    {
-                         <a class="navbar-brand brand-logo" asp-controller="Empleo" asp-action="EmpleosPublicados">
-                        <img src="~/images/logo.svg" alt="logo" />
-                        </a>
-                    }else{
-                         <a class="navbar-brand brand-logo" asp-controller="Home" asp-action="Index">
-                        <img src="~/images/logo.svg" alt="logo" />
-                        </a>
+            @if (HttpContextAccessor.HttpContext.Session.GetString("ROL").Equals("1"))
+            {
+                    <a class="navbar-brand brand-logo" asp-controller="Empleo" asp-action="EmpleosPublicados">
+                <img src="~/images/logo.svg" alt="logo" />
+                </a>
+            }else{
+                    <a class="navbar-brand brand-logo" asp-controller="Home" asp-action="Index">
+                <img src="~/images/logo.svg" alt="logo" />
+                </a>
                
-          }
-         
-                  
-                        
-          
-         
-         
+            }
         </div>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-top"> 
@@ -65,7 +59,61 @@
             <h1 class="welcome-text">Buen dia, <span class="text-black fw-bold"></span></h1>
           </li>
         </ul>
-         
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item d-none d-lg-block">
+            <div id="datepicker-popup" class="input-group date datepicker navbar-date-picker">
+              <span class="input-group-addon input-group-prepend border-right">
+                <span class="icon-calendar input-group-text calendar-icon"></span>
+              </span>
+              <input type="text" class="form-control">
+            </div>
+          </li>
+          <li class="nav-item">
+            <form class="search-form" action="#">
+              <i class="icon-search"></i>
+              <input type="search" class="form-control" placeholder="Search Here" title="Search here">
+            </form>
+          </li>
+          <li class="nav-item dropdown"> 
+            <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="icon-bell"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
+              <a class="dropdown-item py-3">
+                <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
+                <span class="badge badge-pill badge-primary float-right">View all</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="~/~/images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
+                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="~/images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
+                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="~/images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
+                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                </div>
+              </a>
+            </div>
+          </li>
           <li class="nav-item dropdown d-none d-lg-block user-dropdown">
             <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
               <img class="img-xs rounded-circle" src="~/images/faces/face8.jpg" alt="Profile image"> </a>
@@ -73,7 +121,6 @@
               <div class="dropdown-header text-center">
                 <img class="img-md rounded-circle" src="~/images/faces/face8.jpg" alt="Profile image">
                 <p class="mb-1 mt-3 font-weight-semibold">@HttpContextAccessor.HttpContext.Session.GetString("CORREO")</p>
-                <p class="fw-light text-muted mb-0">@HttpContextAccessor.HttpContext.Session.GetString("CORREO")</p>
               </div>
               
               <a class="dropdown-item" onclick="location.href='@Url.Action("Edit", "Usuario", new { id = @HttpContextAccessor.HttpContext.Session.GetString("CORREO") })'"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>Mi Perfil</a>
@@ -261,12 +308,7 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-        
-          
-         
-          <li class="nav-item nav-category">Principal</li>
-         
-        
+          <li class="nav-item nav-category">Principal</li>                 
             <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#solicitudes" aria-expanded="false" aria-controls="solicitudes">
                 <i class="menu-icon mdi mdi-account-circle-outline"></i>
